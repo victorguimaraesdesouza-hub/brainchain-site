@@ -1,0 +1,133 @@
+/* ============================================================
+   BrainChain · interactions.css
+   custom cursor, magnetic, spotlight, tilt, reveal, tickers
+============================================================ */
+
+/* ---------- Custom cursor ---------- */
+html[data-cursor="on"] { /* class added by JS when active */ }
+html[data-cursor="on"] a,
+html[data-cursor="on"] button,
+html[data-cursor="on"] .bc-card,
+html[data-cursor="on"] .bc-pane,
+html[data-cursor="on"] .bc-faq__q,
+html[data-cursor="on"] .bc-role-card,
+html[data-cursor="on"] .bc-agent-tile,
+html[data-cursor="on"] .bc-cockpit,
+html[data-cursor="on"] [data-magnetic] { cursor: none; }
+
+.bc-cursor {
+  position: fixed;
+  top: 0; left: 0;
+  width: 12px; height: 12px;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: width 200ms, height 200ms, background 200ms, opacity 200ms;
+  opacity: 0;
+}
+.bc-cursor::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: rgba(167, 139, 250, 0.3);
+  border: 1px solid rgba(167, 139, 250, 0.6);
+}
+.bc-cursor::after {
+  content: "";
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 4px; height: 4px;
+  border-radius: 50%;
+  background: var(--bc-accent);
+  transform: translate(-50%, -50%);
+  transition: transform 200ms, background 200ms;
+}
+html[data-cursor="on"] .bc-cursor { opacity: 1; }
+.bc-cursor[data-hover="true"] {
+  width: 28px; height: 28px;
+}
+.bc-cursor[data-hover="true"]::before {
+  background: rgba(167, 139, 250, 0.45);
+}
+.bc-cursor[data-hover="true"]::after {
+  width: 10px; height: 10px;
+  background: transparent;
+  /* draw "+" */
+  box-shadow: inset 0 0 0 1px var(--bc-accent);
+  border-radius: 1px;
+  clip-path: polygon(40% 0, 60% 0, 60% 40%, 100% 40%, 100% 60%, 60% 60%, 60% 100%, 40% 100%, 40% 60%, 0 60%, 0 40%, 40% 40%);
+  background: var(--bc-accent);
+}
+.bc-cursor__ripple {
+  position: fixed;
+  top: 0; left: 0;
+  width: 12px; height: 12px;
+  border-radius: 50%;
+  background: rgba(167, 139, 250, 0.4);
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%) scale(1);
+  animation: bc-ripple 300ms cubic-bezier(0, 0, 0.2, 1) forwards;
+}
+@keyframes bc-ripple {
+  from { transform: translate(-50%, -50%) scale(1); opacity: 0.4; }
+  to   { transform: translate(-50%, -50%) scale(3);   opacity: 0; }
+}
+
+/* ---------- Magnetic ---------- */
+[data-magnetic] {
+  transition: transform 200ms cubic-bezier(0.2, 0.7, 0.4, 1.2);
+  will-change: transform;
+}
+
+/* ---------- Section reveal ---------- */
+.bc-reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 400ms cubic-bezier(0, 0, 0.2, 1), transform 400ms cubic-bezier(0, 0, 0.2, 1);
+  will-change: opacity, transform;
+}
+.bc-reveal[data-revealed="true"] {
+  opacity: 1;
+  transform: translateY(0);
+}
+.bc-stagger > * {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 400ms cubic-bezier(0, 0, 0.2, 1), transform 400ms cubic-bezier(0, 0, 0.2, 1);
+}
+.bc-stagger[data-revealed="true"] > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+.bc-stagger[data-revealed="true"] > *:nth-child(1) { transition-delay: 0ms; }
+.bc-stagger[data-revealed="true"] > *:nth-child(2) { transition-delay: 60ms; }
+.bc-stagger[data-revealed="true"] > *:nth-child(3) { transition-delay: 120ms; }
+.bc-stagger[data-revealed="true"] > *:nth-child(4) { transition-delay: 180ms; }
+.bc-stagger[data-revealed="true"] > *:nth-child(5) { transition-delay: 240ms; }
+.bc-stagger[data-revealed="true"] > *:nth-child(6) { transition-delay: 300ms; }
+.bc-stagger[data-revealed="true"] > *:nth-child(7) { transition-delay: 360ms; }
+.bc-stagger[data-revealed="true"] > *:nth-child(8) { transition-delay: 420ms; }
+
+/* ---------- Tilt ---------- */
+[data-tilt] {
+  transform-style: preserve-3d;
+  transition: transform 200ms cubic-bezier(0, 0, 0.2, 1);
+  will-change: transform;
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .bc-cursor, .bc-cursor__ripple { display: none !important; }
+  [data-magnetic], [data-tilt] { transform: none !important; transition: none !important; }
+  .bc-reveal, .bc-stagger > * { opacity: 1 !important; transform: none !important; }
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+  .bc-titlebar__dot { animation: none; }
+}
+
+/* ---------- Touch devices ---------- */
+@media (hover: none) {
+  .bc-cursor, .bc-cursor__ripple { display: none; }
+  [data-magnetic] { transform: none !important; }
+}

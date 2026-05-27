@@ -1,0 +1,22 @@
+{
+  "name": "BrainChain Orchestrator",
+  "short_name": "BrainChain",
+  "description": "IDE multi-agente para times de IA.",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#1a1a1a",
+  "theme_color": "#7c3aed",
+  "icons": [
+    {
+      "src": "assets/brand/logo-icon-source.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/brand/logo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

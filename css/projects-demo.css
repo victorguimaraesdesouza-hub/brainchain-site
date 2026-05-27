@@ -1,0 +1,361 @@
+/* ============================================================
+   BrainChain · projects-demo.css
+   Animated multi-project demo · tabs · layouts · undock · detach
+============================================================ */
+
+.bc-pd-wrap {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--bc-space-3);
+}
+
+/* Outer stage holds main window + (optional) split window side-by-side */
+.bc-pd-stage {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--bc-space-3);
+  transition: grid-template-columns 600ms cubic-bezier(.2,.7,.4,1);
+}
+.bc-pd-stage[data-split="true"] {
+  grid-template-columns: 1fr 1fr;
+}
+
+/* Window chrome */
+.bc-pd-win {
+  background: var(--bc-bg-secondary);
+  border: 1px solid var(--bc-border-soft);
+  border-radius: var(--bc-radius-xl);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  min-width: 0;
+}
+.bc-pd-win[data-spawning="true"] {
+  animation: bc-pd-spawn 500ms cubic-bezier(.2,.7,.4,1);
+}
+@keyframes bc-pd-spawn {
+  from { opacity: 0; transform: translateY(-12px) scale(.98); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.bc-pd-titlebar {
+  height: 26px;
+  background: rgba(18,18,18,0.94);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  display: flex;
+  align-items: center;
+  padding: 0 var(--bc-space-2);
+  font-family: var(--bc-font-mono);
+  font-size: var(--bc-fs-10);
+  color: var(--bc-text-tertiary);
+  gap: var(--bc-space-2);
+}
+.bc-pd-titlebar .controls { margin-left: auto; display: flex; gap: 6px; color: var(--bc-text-muted); }
+.bc-pd-titlebar .controls span { width: 10px; height: 10px; display: inline-flex; align-items: center; justify-content: center; font-size: 9px; }
+
+/* Tab strip */
+.bc-pd-tabs {
+  height: 36px;
+  background: var(--bc-bg-primary);
+  border-bottom: 1px solid var(--bc-border-soft);
+  display: flex;
+  align-items: stretch;
+  padding: 0 var(--bc-space-2);
+  gap: 2px;
+  overflow: hidden;
+}
+.bc-pd-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--bc-space-2);
+  padding: 0 var(--bc-space-3);
+  height: 100%;
+  font-family: var(--bc-font-mono);
+  font-size: var(--bc-fs-11);
+  color: var(--bc-text-tertiary);
+  border-top: 2px solid transparent;
+  border-right: 1px solid var(--bc-border-soft);
+  background: transparent;
+  white-space: nowrap;
+  transition: background 200ms, color 200ms, border-color 200ms, transform 250ms cubic-bezier(.2,.7,.4,1), opacity 250ms;
+  position: relative;
+  cursor: pointer;
+}
+.bc-pd-tab[data-active="true"] {
+  background: var(--bc-bg-secondary);
+  color: var(--bc-text-primary);
+  border-top-color: var(--bc-tabcolor, var(--bc-accent));
+}
+.bc-pd-tab[data-active="true"]::after {
+  content: "";
+  position: absolute; left: 0; right: 0; bottom: -1px;
+  height: 1px;
+  background: var(--bc-bg-secondary);
+}
+.bc-pd-tab .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--bc-tabcolor, var(--bc-accent)); }
+.bc-pd-tab .count {
+  font-size: var(--bc-fs-9);
+  color: var(--bc-text-muted);
+  background: rgba(255,255,255,0.04);
+  padding: 1px 5px;
+  border-radius: var(--bc-radius-sm);
+}
+.bc-pd-tab[data-flying="true"] {
+  position: absolute;
+  z-index: 6;
+  animation: bc-pd-fly 700ms cubic-bezier(.2,.7,.4,1) forwards;
+  pointer-events: none;
+}
+@keyframes bc-pd-fly {
+  0%   { transform: translate(0, 0) scale(1); opacity: 1; }
+  50%  { transform: translate(140px, -28px) scale(1.05); opacity: 1; }
+  100% { transform: translate(380px, -28px) scale(.9); opacity: 0; }
+}
+.bc-pd-tab[data-fading="true"] {
+  opacity: 0;
+  width: 0; padding: 0; margin: 0;
+  pointer-events: none;
+  border-right: 0;
+}
+.bc-pd-newtab {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 30px;
+  color: var(--bc-text-tertiary);
+  background: transparent;
+}
+.bc-pd-newtab:hover { background: var(--bc-bg-tertiary); color: var(--bc-accent-light); }
+
+/* Header area below tabs (mimic the real app) */
+.bc-pd-header {
+  height: 32px;
+  background: var(--bc-bg-secondary);
+  border-bottom: 1px solid var(--bc-border-soft);
+  display: flex;
+  align-items: center;
+  padding: 0 var(--bc-space-2);
+  gap: var(--bc-space-2);
+  font-family: var(--bc-font-mono);
+  font-size: var(--bc-fs-10);
+  color: var(--bc-text-tertiary);
+}
+.bc-pd-header .seg {
+  padding: 3px 8px;
+  border: 1px solid var(--bc-border-soft);
+  border-radius: var(--bc-radius-sm);
+  background: rgba(255,255,255,0.02);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.bc-pd-header .seg--layout {
+  color: var(--bc-tabcolor, var(--bc-accent-light));
+  border-color: var(--bc-tabcolor, var(--bc-accent-light));
+  background: color-mix(in srgb, var(--bc-tabcolor, var(--bc-accent)) 12%, transparent);
+}
+.bc-pd-header .spacer { flex: 1; }
+.bc-pd-header .accent {
+  color: var(--bc-tabcolor, var(--bc-accent-light));
+}
+
+/* Pane grid (layout-aware) · uses .bc-pane chrome from app-components.css */
+.bc-pd-grid {
+  background: var(--bc-bg-void);
+  display: grid;
+  gap: 8px;
+  padding: 8px;
+  height: 480px;
+  position: relative;
+  transition: grid-template-columns 400ms cubic-bezier(.2,.7,.4,1),
+              grid-template-rows 400ms cubic-bezier(.2,.7,.4,1);
+}
+
+/* Use the cockpit's .bc-pane chrome inside the demo, but compact it so 6 panes stay legible */
+.bc-pd-grid .bc-pane {
+  border: 1px solid var(--bc-border-soft);
+  border-radius: var(--bc-radius-md);
+  overflow: hidden;
+  animation: bc-pd-paneIn 350ms cubic-bezier(.2,.7,.4,1);
+  background: var(--bc-bg-void);
+}
+.bc-pd-grid .bc-pane__header   { height: 24px; padding: 0 var(--bc-space-1_5); }
+.bc-pd-grid .bc-pane__subhead  { height: 18px; padding: 0 var(--bc-space-1_5); }
+.bc-pd-grid .bc-pane__body     { padding: var(--bc-space-2); font-size: var(--bc-fs-10); }
+.bc-pd-grid .bc-pane__footer   { padding: 2px var(--bc-space-1_5); font-size: var(--bc-fs-9); }
+.bc-pd-grid .bc-pane__header .agent-chip { font-size: var(--bc-fs-9); padding: 1px 5px; }
+.bc-pd-grid .bc-pane__header .ident { gap: 5px; }
+.bc-pd-grid .bc-pane__header .right { gap: 4px; opacity: .55; }
+.bc-pd-grid .bc-pane__subhead span   { font-size: var(--bc-fs-9); }
+
+/* Strict single-line chrome — no wrapping, ellipsis on overflow */
+.bc-pd-grid .bc-pane__header,
+.bc-pd-grid .bc-pane__subhead,
+.bc-pd-grid .bc-pane__footer {
+  flex-wrap: nowrap;
+  white-space: nowrap;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.bc-pd-grid .bc-pane__header .ident {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: inline-flex;
+  align-items: center;
+}
+.bc-pd-grid .bc-pane__header .right { flex-shrink: 0; }
+.bc-pd-grid .bc-pane__subhead { display: flex; align-items: center; gap: 6px; }
+.bc-pd-grid .bc-pane__subhead > span {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+}
+.bc-pd-grid .bc-pane__footer .right { flex-shrink: 0; }
+
+/* Dense 2×3 layout · drop non-essential chrome (keep agent + role + tok + cost) */
+.bc-pd-grid[data-layout="2x3"] .bc-pane__header .ident > span:nth-child(3),
+.bc-pd-grid[data-layout="2x3"] .bc-pane__header .ident > span:nth-child(4) { display: none; }
+.bc-pd-grid[data-layout="2x3"] .bc-pane__header .id { display: none; }
+.bc-pd-grid[data-layout="2x3"] .bc-pane__header .right { display: none; }
+.bc-pd-grid[data-layout="2x3"] .bc-pane__subhead > span:last-child { display: none; }
+.bc-pd-grid[data-layout="2x3"] .bc-pane__footer > span:not(.right) { display: none; }
+.bc-pd-grid[data-layout="2x3"] .bc-pane__footer .right {
+  margin-left: 0;
+  width: 100%;
+  justify-content: space-between;
+}
+
+/* Split-mode densifies both windows · drop the same chrome in the secondary 2-col layout */
+.bc-pd-stage[data-split="true"] .bc-pd-grid .bc-pane__header .ident > span:nth-child(3),
+.bc-pd-stage[data-split="true"] .bc-pd-grid .bc-pane__header .ident > span:nth-child(4) { display: none; }
+.bc-pd-stage[data-split="true"] .bc-pd-grid .bc-pane__header .right { display: none; }
+.bc-pd-stage[data-split="true"] .bc-pd-grid .bc-pane__subhead > span:last-child { display: none; }
+
+@keyframes bc-pd-paneIn {
+  from { opacity: 0; transform: scale(.97); }
+  to   { opacity: 1; transform: scale(1); }
+}
+.bc-pd-grid[data-layout="2x3"]    { grid-template-columns: 1fr 1fr 1fr; grid-template-rows: 1fr 1fr; }
+.bc-pd-grid[data-layout="2x2"]    { grid-template-columns: 1fr 1fr;     grid-template-rows: 1fr 1fr; }
+.bc-pd-grid[data-layout="2col"]   { grid-template-columns: 1fr 1fr;     grid-template-rows: 1fr; }
+.bc-pd-grid[data-layout="single"] { grid-template-columns: 1fr;         grid-template-rows: 1fr; }
+
+/* Legacy mini-pane styles — retained only for the floating detached window */
+
+/* Detached floating pane window */
+.bc-pd-floating {
+  position: absolute;
+  width: 220px;
+  background: var(--bc-bg-elevated);
+  border: 1px solid var(--bc-border);
+  border-radius: var(--bc-radius-lg);
+  box-shadow: var(--bc-shadow-xl);
+  z-index: 7;
+  opacity: 0;
+  transform: scale(.96) translate(0, -8px);
+  transition: opacity 350ms, transform 350ms cubic-bezier(.2,.7,.4,1);
+  pointer-events: none;
+  font-family: var(--bc-font-mono);
+  overflow: hidden;
+}
+.bc-pd-floating[data-visible="true"] {
+  opacity: 1;
+  transform: scale(1) translate(0, 0);
+}
+.bc-pd-floating .ttl {
+  height: 22px;
+  background: rgba(0,0,0,0.4);
+  border-bottom: 1px solid var(--bc-border-soft);
+  display: flex; align-items: center; padding: 0 var(--bc-space-2);
+  font-size: var(--bc-fs-9);
+  color: var(--bc-text-tertiary);
+}
+.bc-pd-floating .ttl .x { margin-left: auto; color: var(--bc-text-muted); }
+.bc-pd-floating .body {
+  padding: var(--bc-space-2);
+  font-size: var(--bc-fs-9);
+  color: var(--bc-text-secondary);
+  line-height: 1.5;
+}
+
+/* Bottom statusbar */
+.bc-pd-status {
+  height: 22px;
+  background: var(--bc-bg-secondary);
+  border-top: 1px solid var(--bc-border-soft);
+  display: flex; align-items: center;
+  padding: 0 var(--bc-space-2);
+  gap: var(--bc-space-2);
+  font-family: var(--bc-font-mono);
+  font-size: var(--bc-fs-9);
+  color: var(--bc-text-tertiary);
+}
+.bc-pd-status .sep { color: var(--bc-text-muted); }
+.bc-pd-status .accent { color: var(--bc-tabcolor, var(--bc-accent-light)); }
+.bc-pd-status .green { color: var(--bc-success); }
+
+/* Caption strip under the stage */
+.bc-pd-caption {
+  font-family: var(--bc-font-mono);
+  font-size: var(--bc-fs-11);
+  color: var(--bc-text-tertiary);
+  letter-spacing: 0.04em;
+  text-align: center;
+  min-height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--bc-space-2);
+  transition: opacity 200ms;
+}
+.bc-pd-caption .arrow { color: var(--bc-accent-light); }
+.bc-pd-caption .pill {
+  display: inline-flex; align-items: center; gap: 4px;
+  padding: 2px 8px;
+  border: 1px solid var(--bc-tabcolor, var(--bc-border));
+  background: color-mix(in srgb, var(--bc-tabcolor, var(--bc-accent)) 8%, transparent);
+  color: var(--bc-tabcolor, var(--bc-accent-light));
+  border-radius: var(--bc-radius-full);
+  font-size: var(--bc-fs-10);
+}
+.bc-pd-caption .pill .d { width: 6px; height: 6px; border-radius: 50%; background: var(--bc-tabcolor, var(--bc-accent)); }
+
+/* Action-step indicator pill (top-right of demo) */
+.bc-pd-step {
+  position: absolute;
+  top: -12px; right: var(--bc-space-3);
+  background: var(--bc-bg-elevated);
+  border: 1px solid var(--bc-border-soft);
+  border-radius: var(--bc-radius-full);
+  padding: 4px 10px;
+  font-family: var(--bc-font-mono);
+  font-size: var(--bc-fs-9);
+  letter-spacing: 0.04em;
+  color: var(--bc-text-tertiary);
+  text-transform: uppercase;
+  display: flex; align-items: center; gap: 4px;
+}
+.bc-pd-step .num { color: var(--bc-accent-light); font-weight: var(--bc-fw-semibold); }
+.bc-pd-step .of { color: var(--bc-text-muted); }
+
+/* Mobile compact */
+@media (max-width: 1024px) {
+  .bc-pd-stage[data-split="true"] { grid-template-columns: 1fr; }
+  .bc-pd-grid { height: 380px; gap: 6px; padding: 6px; }
+  .bc-pd-grid[data-layout="2x3"] { grid-template-columns: 1fr 1fr; grid-template-rows: repeat(3, 1fr); }
+}
+
+/* ---------- Faux cursor inside each window ---------- */
+.bc-pd-fauxcursor {
+  position: absolute;
+  width: 14px; height: 14px;
+  left: 0; top: 0;
+  pointer-events: none;
+  z-index: 8;
+  transform: translate(-2px, -2px);
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+  transition: opacity 200ms;
+}
+.bc-pd-fauxcursor svg { width: 100%; height: 100%; }
+.bc-pd-win { position: relative; } /* ensure cursor is positioned within window */

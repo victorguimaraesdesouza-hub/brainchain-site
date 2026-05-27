@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#7c3aed" />
+<meta name="color-scheme" content="dark" />
+<title>Entrar — BrainChain Orchestrator</title>
+<meta name="description" content="Entre na sua conta BrainChain Orchestrator usando login com Google." />
+<link rel="icon" href="assets/brand/logo.svg" type="image/svg+xml">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/chrome.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/interactions.css">
+<link rel="stylesheet" href="css/responsive.css">
+<link rel="stylesheet" href="css/site-pages.css">
+</head>
+<body>
+<div class="bc-titlebar">
+  <div class="bc-titlebar__left"><span class="bc-titlebar__dot"></span><span>BrainChain Orchestrator • conta</span></div>
+</div>
+
+<nav class="bc-navbar" aria-label="Navegação principal">
+  <div class="bc-navbar__inner">
+    <a href="index.html" class="bc-brand" aria-label="BrainChain Orchestrator">
+      <span class="bc-brand__mark" aria-hidden="true"><span></span><span></span><span></span><span class="bc-brand__plus"></span></span>
+      <span class="bc-brand__name">BrainChain<span class="bc-brand__star">*</span></span>
+    </a>
+    <div class="bc-navbar__spacer"></div>
+    <div class="bc-navbar__right">
+      <a href="index.html#comunidade" class="bc-btn bc-btn--ghost bc-btn--sm">Comunidade</a>
+      <a href="download.html" class="bc-btn bc-btn--primary bc-btn--sm">Baixar</a>
+    </div>
+  </div>
+</nav>
+
+<main class="bc-login-page">
+  <section class="bc-login-shell">
+    <div class="bc-login-copy bc-reveal">
+      <span class="bc-eyebrow bc-eyebrow--accent">LOGIN</span>
+      <h1>Entre com Google para sincronizar seu workspace.</h1>
+      <p>A conta BrainChain usa apenas autenticação Google. No alpha, ela prepara acesso a billing, licenças, sync opcional e recursos de equipe sem criar mais uma senha para gerenciar.</p>
+      <div class="bc-login-meta">
+        <span><strong>OAuth</strong> Google</span>
+        <span><strong>Sem</strong> senha local</span>
+        <span><strong>Alpha</strong> invite-ready</span>
+      </div>
+    </div>
+
+    <div class="bc-login-card bc-reveal" data-spotlight>
+      <div class="bc-login-card__brand">
+        <span class="bc-brand__mark" aria-hidden="true"><span></span><span></span><span></span><span class="bc-brand__plus"></span></span>
+        <span>BrainChain<span>*</span></span>
+      </div>
+      <div>
+        <h2>Acessar conta</h2>
+        <p>Use sua conta Google para entrar no portal BrainChain.</p>
+      </div>
+      <a class="bc-google-login" href="https://accounts.google.com/" rel="noopener">
+        <img src="assets/icons/google_cleartheme.png" alt="" aria-hidden="true">
+        Continuar com Google
+      </a>
+      <p class="bc-login-card__note">Ao continuar, você será direcionado para o fluxo OAuth do Google quando o portal de conta estiver conectado ao backend.</p>
+    </div>
+  </section>
+</main>
+
+<footer class="bc-footer">
+  <div class="bc-footer__copy">© 2026 BrainChain Orchestrator · <a href="index.html">Home</a></div>
+</footer>
+<script src="js/i18n.js" defer></script>
+<script src="js/interactions.js" defer></script>
+</body>
+</html>
