@@ -33,11 +33,16 @@ SiteBrainChain/
 │   ├── responsive.css
 │   └── site-pages.css
 ├── js/
+│   ├── version.js
 │   ├── i18n.js
 │   ├── interactions.js
 │   ├── discord-sim.js
 │   ├── cockpit.js
 │   └── projects-demo.js
+├── scripts/
+│   └── sync-app-version.js
+├── version.json
+├── package.json
 ├── manifest.webmanifest
 ├── robots.txt
 └── sitemap.xml
@@ -51,9 +56,23 @@ python -m http.server 8026 --bind 127.0.0.1
 
 Abra `http://127.0.0.1:8026/`.
 
+## Sincronizar versão com o app
+
+A versão exibida no site fica centralizada em `version.json`, com fallback em
+`js/version.js` para carregamento estático. Para atualizar a versão do site a
+partir do app BrainChain, rode na pasta `SiteBrainChain`:
+
+```bash
+npm run sync:app-version
+```
+
+Por padrão o script lê `../../BrainChain/app/package.json`. Para apontar para
+outro caminho, use `BRAINCHAIN_APP_PACKAGE=/caminho/package.json`.
+
 ## Notas
 
 - O site ainda é estático, sem build step.
+- `js/version.js` deve ser carregado antes dos scripts que renderizam textos com versão.
 - A home usa os cockpits animados de `js/cockpit.js` e `js/projects-demo.js`.
 - A seção de comunidade usa `js/discord-sim.js` para simular mensagens em tempo real.
 - Páginas internas usam a camada compartilhada `css/site-pages.css`.

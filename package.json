@@ -1,0 +1,8 @@
+{
+  "name": "brainchain-site",
+  "version": "0.0.8",
+  "private": true,
+  "scripts": {
+    "sync:app-version": "node scripts/sync-app-version.js"
+  }
+}

@@ -9,6 +9,10 @@
 
   const prefersReduced =
     window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const versionLabel = (kind) => {
+    const siteVersion = window.BrainChainSiteVersion;
+    return siteVersion ? siteVersion.format(kind) : '0.0.8 Alpha';
+  };
 
   /* ---------- Streaming scripts per agent role ---------- */
   const SCRIPTS = {
@@ -395,7 +399,7 @@
     const titlebar = el('div', { class: 'bc-pd-titlebar' });
     titlebar.innerHTML =
       `<span class="bc-titlebar__dot" style="background:${project.color}"></span>` +
-      `<span>BrainChain Orchestrator · v0.0.1</span>` +
+      `<span data-bc-version="orchestrator">${versionLabel('orchestrator')}</span>` +
       `<span class="controls"><span>−</span><span>□</span><span>×</span></span>`;
     win.appendChild(titlebar);
 
@@ -428,6 +432,7 @@
     const status = el('div', { class: 'bc-pd-status' });
     buildStatus(status, project);
     win.appendChild(status);
+    if (window.BrainChainSiteVersion) window.BrainChainSiteVersion.apply(win);
 
     // Faux cursor (per window)
     const cursor = el('div', { class: 'bc-pd-fauxcursor' });

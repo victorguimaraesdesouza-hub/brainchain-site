@@ -9,6 +9,10 @@
   const prefersReduced =
     window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const isWide  = () => window.matchMedia('(min-width: 1024px)').matches;
+  const versionLabel = (kind) => {
+    const siteVersion = window.BrainChainSiteVersion;
+    return siteVersion ? siteVersion.format(kind) : '0.0.8 Alpha';
+  };
 
   /* ---------- Scripts per agent (formal PT-BR) ---------- */
   const SCRIPTS = {
@@ -88,7 +92,7 @@
     const titlebar = `
       <div class="bc-cockpit__titlebar">
         <span class="bc-titlebar__dot"></span>
-        <span>BrainChain Orchestrator · v0.0.1</span>
+        <span data-bc-version="orchestrator">${versionLabel('orchestrator')}</span>
         <span class="right">
           <span>−</span><span>□</span><span>×</span>
         </span>
@@ -159,6 +163,7 @@
       ${flykey}`;
 
     root._cfg = cfg;
+    if (window.BrainChainSiteVersion) window.BrainChainSiteVersion.apply(root);
   }
 
   function paneHTML(p, focused) {
@@ -180,7 +185,7 @@
             <span class="bc-dot" style="width:5px;height:5px"></span><span>live</span>
           </div>
           <div class="bc-browser-content">
-            <h3>BrainChain · v0.0.1</h3>
+            <h3 data-bc-version="brand">${versionLabel('brand')}</h3>
             <div class="row" style="margin-bottom:6px"><span style="color:#10b981">●</span> hot reload ok</div>
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:8px">
               <div style="background:#f3f4f6;border-radius:4px;padding:6px;font-size:10px">
