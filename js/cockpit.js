@@ -11,7 +11,7 @@
   const isWide  = () => window.matchMedia('(min-width: 1024px)').matches;
   const versionLabel = (kind) => {
     const siteVersion = window.BrainChainSiteVersion;
-    return siteVersion ? siteVersion.format(kind) : '0.0.8 Alpha';
+    return siteVersion ? siteVersion.format(kind) : '0.0.9 Alpha';
   };
 
   /* ---------- Scripts per agent (formal PT-BR) ---------- */

@@ -11,7 +11,7 @@
     window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const versionLabel = (kind) => {
     const siteVersion = window.BrainChainSiteVersion;
-    return siteVersion ? siteVersion.format(kind) : '0.0.8 Alpha';
+    return siteVersion ? siteVersion.format(kind) : '0.0.9 Alpha';
   };
 
   /* ---------- Streaming scripts per agent role ---------- */
