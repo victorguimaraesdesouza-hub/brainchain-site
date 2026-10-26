@@ -1,6 +1,18 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <svg width="260" height="72" viewBox="0 0 260 72" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="BrainChain Orchestrator">
-  
+  <style>
+    .logo-main {
+      font-family: "Inter", "Segoe UI", Arial, sans-serif;
+      font-weight: 500;
+      fill: #ffffff;
+    }
+    .logo-sub {
+      font-family: "Inter", "Segoe UI", Arial, sans-serif;
+      font-weight: 400;
+      letter-spacing: 2.4px;
+      fill: #808080;
+    }
+  </style>
   <text x="12" y="31" text-anchor="start" dominant-baseline="middle" class="logo-main" font-size="33">BrainChain</text>
   <text x="13" y="57" text-anchor="start" dominant-baseline="middle" class="logo-sub" font-size="19">ORCHESTRATOR</text>
 </svg>

@@ -1,1158 +1,139 @@
 <!doctype html>
 <html lang="pt-BR">
-<head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<meta name="theme-color" content="#7c3aed" />
-<meta name="color-scheme" content="dark" />
-<title>BrainChain Orchestrator — Múltiplos agentes, um único workspace.</title>
-<meta name="description" content="IDE multi-agente para times de IA. Orquestre Claude, GPT-4o, Gemini, Mistral, Llama e outros modelos lado a lado, no mesmo workspace, em paralelo." />
-<meta property="og:title" content="BrainChain Orchestrator — Múltiplos agentes, um único workspace." />
-<meta property="og:description" content="IDE multi-agente para orquestrar Claude, Codex, Gemini, Llama e outros modelos em paralelo no mesmo workspace." />
-<meta property="og:type" content="website" />
-<meta property="og:image" content="assets/brand/logo-icon-source.png" />
-<link rel="icon" href="assets/brand/logo.svg" type="image/svg+xml">
-<link rel="manifest" href="manifest.webmanifest">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="BrainChain Orchestrator — uma central visual para coordenar CLIs de IA reais." />
+    <title>BrainChain Orchestrator — Seu time de IA, em órbita</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
+    <div class="space-field" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-<link rel="stylesheet" href="css/tokens.css">
-<link rel="stylesheet" href="css/base.css">
-<link rel="stylesheet" href="css/chrome.css">
-<link rel="stylesheet" href="css/components.css">
-<link rel="stylesheet" href="css/app-components.css">
-<link rel="stylesheet" href="css/pages.css">
-<link rel="stylesheet" href="css/sections-v2.css">
-<link rel="stylesheet" href="css/projects-demo.css">
-<link rel="stylesheet" href="css/interactions.css">
-<link rel="stylesheet" href="css/responsive.css">
-<link rel="stylesheet" href="css/site-pages.css">
-
-<style>
-  /* Extra agent colors used in this page */
-  .bc-glyph--grok        { background: #9ca3af; color: #1a1a1a; }
-  .bc-glyph--antigravity { background: #4285f4; color: #fff; }
-  /* Footer simplification (status bar removed) */
-  .bc-footer__copy {
-    padding: var(--bc-space-4) var(--bc-space-6) var(--bc-space-5);
-    border-top: 1px solid var(--bc-border-soft);
-    font-family: var(--bc-font-mono);
-    font-size: var(--bc-fs-11);
-    color: var(--bc-text-tertiary);
-    text-align: center;
-  }
-</style>
-</head>
-<body>
-
-<!-- 9.1 · Faux titlebar -->
-<div class="bc-titlebar">
-  <div class="bc-titlebar__left">
-    <span class="bc-titlebar__dot"></span>
-    <span data-bc-version="titlebar">BrainChain Orchestrator • 0.0.9 Alpha</span>
-  </div>
-  <div class="bc-titlebar__controls" aria-hidden="true">
-    <span class="bc-titlebar__ctrl"><svg viewBox="0 0 12 12"><line x1="2" y1="6" x2="10" y2="6" stroke="currentColor" stroke-width="1.2"/></svg></span>
-    <span class="bc-titlebar__ctrl"><svg viewBox="0 0 12 12"><rect x="2" y="2" width="8" height="8" fill="none" stroke="currentColor" stroke-width="1.2"/></svg></span>
-    <span class="bc-titlebar__ctrl"><svg viewBox="0 0 12 12"><line x1="2" y1="2" x2="10" y2="10" stroke="currentColor" stroke-width="1.2"/><line x1="10" y1="2" x2="2" y2="10" stroke="currentColor" stroke-width="1.2"/></svg></span>
-  </div>
-</div>
-
-<!-- 9.2 · Main navbar -->
-<nav class="bc-navbar" aria-label="Navegação principal">
-  <div class="bc-navbar__inner">
-    <a href="index.html" class="bc-brand" aria-label="BrainChain Orchestrator">
-      <span class="bc-brand__mark" aria-hidden="true">
-        <span></span><span></span><span></span><span class="bc-brand__plus"></span>
-      </span>
-      <span class="bc-brand__name">BrainChain<span class="bc-brand__star">*</span></span>
-    </a>
-
-    <ul class="bc-nav-links" aria-label="Seções">
-      <li><a href="#solucao">Recursos</a></li>
-      <li><a href="agents.html">Agentes</a></li>
-      <li><a href="#comunidade">Comunidade</a></li>
-      <li><a href="docs.html">Documentação</a></li>
-      <li><a href="changelog.html">Changelog</a></li>
-    </ul>
-
-    <div class="bc-navbar__spacer"></div>
-
-    <div class="bc-navbar__right">
-      <ul class="bc-nav-links">
-        <li><a href="#precos">Preços</a></li>
-        <li><a href="login.html">Entrar</a></li>
-      </ul>
-      <a href="download.html" class="bc-btn bc-btn--primary bc-btn--sm" data-magnetic>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-        Baixar
+    <header class="site-header">
+      <a class="brand" href="#topo" aria-label="BrainChain — início">
+        <img src="assets/brand/brainchain-wordmark-white.svg" alt="BrainChain Orchestrator" />
       </a>
-      <div class="bc-lang-toggle" data-lang-toggle aria-label="Idioma">
-        <button type="button" class="bc-lang-toggle__opt" data-lang="pt" aria-current="true">PT</button>
-        <span class="bc-lang-toggle__sep">/</span>
-        <button type="button" class="bc-lang-toggle__opt" data-lang="en">EN</button>
-        <span class="bc-lang-toggle__sep">/</span>
-        <button type="button" class="bc-lang-toggle__opt" data-lang="es">ES</button>
-      </div>
-      <button class="bc-mobile-menu-toggle" data-mobile-menu-toggle aria-label="Abrir menu" aria-expanded="false">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
-      </button>
-    </div>
-  </div>
-</nav>
+      <button class="menu-toggle" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="nav-principal"><span></span><span></span></button>
+      <nav id="nav-principal" class="site-nav" aria-label="Navegação principal">
+        <a href="#como-funciona">Como funciona</a>
+        <a href="#planos">Planos</a>
+        <a class="nav-login" href="#entrar">Entrar <span aria-hidden="true">↗</span></a>
+      </nav>
+    </header>
 
-<div class="bc-mobile-menu" data-mobile-menu>
-  <div class="bc-mobile-menu__inner">
-    <a href="product.html">Produto</a>
-    <a href="agents.html">Agentes</a>
-    <a href="#comunidade">Comunidade</a>
-    <a href="docs.html">Documentação</a>
-    <a href="changelog.html">Changelog</a>
-    <a href="#precos">Preços</a>
-    <a href="login.html">Entrar</a>
-    <a href="download.html">Download</a>
-    <a href="about.html">Sobre</a>
-  </div>
-</div>
-
-<!-- 10.1 · Hero -->
-<section class="bc-hero" id="hero">
-  <div class="bc-hero__panel">
-    <div class="bc-hero__brandlock bc-reveal">
-      <span class="bc-brand__mark" aria-hidden="true">
-        <span></span><span></span><span></span><span class="bc-brand__plus"></span>
-      </span>
-      <span class="name">BrainChain<span>*</span></span>
-      <span class="sub">ORCHESTRATOR</span>
-    </div>
-
-    <div class="bc-hero__eyebrow bc-reveal" data-bc-version="hero">BRAINCHAIN* · 0.0.9 Alpha</div>
-
-    <h1 class="bc-hero__h1 bc-reveal">Múltiplos agentes,
-um único workspace.<span class="ast">*</span></h1>
-
-    <p class="bc-hero__sub bc-reveal">
-      Orquestre Claude, GPT-4o, Gemini, Mistral, Llama e outros modelos em paralelo. Mesmo workspace, mesmo contexto, custo controlado por agente — sem transferência manual entre terminais.
-    </p>
-
-    <div class="bc-hero__tickers bc-reveal">
-      <span class="stat"><span class="num"><span data-tick="10" data-tick-suffix="+">0+</span></span> MODELOS</span>
-      <span class="sep">·</span>
-      <span class="stat"><span class="num"><span data-tick="8">0</span></span> PANES</span>
-      <span class="sep">·</span>
-      <span class="stat"><span class="num">∞</span> WORKSPACES</span>
-      <span class="sep">·</span>
-      <span class="stat"><span class="num">R$ 0</span>/mês*</span>
-    </div>
-
-    <div class="bc-hero__ctas bc-reveal">
-      <a href="download.html" class="bc-btn bc-btn--lg bc-btn--white" data-magnetic>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-        Baixar para Windows
-      </a>
-      <a href="#precos" class="bc-btn bc-btn--lg bc-btn--outline-white" data-magnetic>
-        Ver planos →
-      </a>
-    </div>
-
-    <p class="bc-hero__shipping bc-reveal">
-      Disponível para Windows · macOS e Linux em breve · Sem cartão de crédito
-    </p>
-  </div>
-
-  <div class="bc-hero__cockpit-wrap">
-    <div class="bc-cockpit" data-cockpit="hero" aria-label="Demonstração ao vivo do BrainChain"></div>
-    <div class="bc-hero__cockpit-cap">
-      <span class="arrow">↑</span> BrainChain em execução · demonstração ao vivo · interativa
-    </div>
-  </div>
-</section>
-
-<!-- 10.2 · Implantação rápida -->
-<section class="bc-section bc-section--alt" id="resumo">
-  <div class="bc-container">
-    <div class="bc-section__head bc-reveal">
-      <span class="bc-eyebrow bc-eyebrow--accent">IMPLANTAÇÃO RÁPIDA</span>
-      <h2 class="bc-section__title">Instalação direta.
-Configuração mínima.<span class="bc-asterisk">*</span></h2>
-    </div>
-
-    <div class="bc-resume-grid bc-stagger">
-      <div class="bc-resume-card" data-spotlight>
-        <span class="bc-resume-card__num">01</span>
-        <div class="bc-resume-card__title">
-          <svg class="bc-resume-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-          Instale a aplicação
-        </div>
-        <p class="bc-resume-card__body">Disponível para Windows. macOS e Linux em breve. Instalador assinado, sem dependências externas, sem build.</p>
-      </div>
-
-      <div class="bc-resume-card" data-spotlight>
-        <span class="bc-resume-card__num">02</span>
-        <div class="bc-resume-card__title">
-          <svg class="bc-resume-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-          Conecte seus agentes
-        </div>
-        <p class="bc-resume-card__body">Claude, GPT-4o, Gemini, Mistral, Llama e outros. Integração nativa — você controla suas credenciais e pague API diretamente ao provedor.</p>
-      </div>
-
-      <div class="bc-resume-card" data-spotlight>
-        <span class="bc-resume-card__num">03</span>
-        <div class="bc-resume-card__title">
-          <svg class="bc-resume-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="5 9 2 12 5 15"/><polyline points="9 5 12 2 15 5"/><polyline points="15 19 12 22 9 19"/><polyline points="19 9 22 12 19 15"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="12" y1="2" x2="12" y2="22"/></svg>
-          Distribua as tarefas
-        </div>
-        <p class="bc-resume-card__body">Um comando. Múltiplos agentes trabalhando em paralelo. Cada modelo executa a função para a qual oferece melhor desempenho.</p>
-      </div>
-
-      <div class="bc-resume-card" data-spotlight>
-        <span class="bc-resume-card__num">04</span>
-        <div class="bc-resume-card__title">
-          <svg class="bc-resume-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7v10a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-6l-2-3H5a2 2 0 0 0-2 2z"/><line x1="8" y1="11" x2="16" y2="11"/></svg>
-          Workspace unificado
-        </div>
-        <p class="bc-resume-card__body">Todos os agentes acessam o mesmo diretório. Sem transferência manual entre ferramentas. Contexto centralizado em todas as panes.</p>
-      </div>
-
-      <div class="bc-resume-card" data-spotlight>
-        <span class="bc-resume-card__num">05</span>
-        <div class="bc-resume-card__title">
-          <svg class="bc-resume-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-          Flexibilidade total
-        </div>
-        <p class="bc-resume-card__body">Cancele, pause ou ajuste a qualquer momento. Plano mensal ou anual. Plano gratuito sempre disponível.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- 10.3 · O desafio -->
-<section class="bc-section" id="desafio">
-  <div class="bc-container">
-    <div class="bc-section__head bc-reveal">
-      <span class="bc-eyebrow">O DESAFIO</span>
-      <h2 class="bc-section__title">Agentes inteligentes
-atingindo seus limites.<span class="bc-asterisk">*</span></h2>
-      <p class="bc-section__sub">
-        Seu orçamento de IA está sendo drenado. Você paga por modelos de alto desempenho para executar <em>todas</em> as tarefas — incluindo aquelas que modelos eficientes resolveriam com a mesma qualidade.
-      </p>
-    </div>
-
-    <div class="bc-twocol">
-      <div class="bc-twocol__txt bc-reveal">
-        <p><span class="arrow">→</span> <strong>70% das tarefas</strong> não exigem inteligência de topo. Leitura, busca, processamento, formatação — tudo isso consome limite valioso de modelos premium.</p>
-        <p><span class="arrow">→</span> <strong>Tokens acabam antes do prazo.</strong> Sem opções: pagar upgrade, esperar renovação ou suspender entregas em andamento.</p>
-        <p><span class="arrow">→</span> <strong>Falta orquestração inteligente.</strong> Ferramentas de IA não conversam entre si. Você copia e cola entre abas, terminais e contextos, perdendo informação no caminho.</p>
-        <p style="margin-top:24px;font-family:var(--bc-font-mono);font-size:11px;color:var(--bc-text-tertiary);text-transform:uppercase;letter-spacing:.04em">
-          ↳ ver comparativo público de modelos abaixo
-        </p>
-      </div>
-
-      <div class="bc-mock-rate bc-reveal" aria-label="Cenário: agente premium atinge limite">
-        <div class="bc-mock-rate__head">
-          <span class="id">CLAUDE OPUS</span>
-          <span>~/projeto-cliente</span>
-          <span class="status"><span class="bc-dot bc-dot--error" style="width:5px;height:5px"></span> limite atingido</span>
-        </div>
-        <div class="bc-mock-rate__body">
-          <div><span style="color:var(--bc-success)">✓</span> Lido src/auth/middleware.ts</div>
-          <div><span style="color:var(--bc-success)">✓</span> Lido src/payments/stripe.ts <span style="color:var(--bc-text-muted)">(18.4k tokens)</span></div>
-          <div><span style="color:var(--bc-warning)">⠿</span> Refatorando middleware…</div>
-          <hr class="bc-mock-rate__rule" />
-          <div style="color:var(--bc-error);font-weight:600;">Não é possível continuar.</div>
-          <div style="color:var(--bc-text-tertiary);font-size:10px;">Limite desta sessão e da semana esgotado.</div>
-          <div class="bc-mock-rate__bars">
-            <span class="label">sessão atual</span>
-            <span class="bar"><span style="width:100%"></span></span>
-            <span class="pct">100%</span>
-            <span class="label">esta semana</span>
-            <span class="bar"><span style="width:100%"></span></span>
-            <span class="pct">100%</span>
-            <span class="label">plano premium</span>
-            <span class="bar"><span style="width:100%"></span></span>
-            <span class="pct">100%</span>
+    <main id="conteudo">
+      <section id="topo" class="hero" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <h1 id="hero-title">Seu projeto é o centro. Seus agentes, uma constelação.</h1>
+          <p class="hero-intro">BrainChain reúne CLIs de IA reais em uma única estação visual para você abrir, orientar e acompanhar o trabalho paralelo sem perder a rota.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#entrar">Explorar o acesso <span aria-hidden="true">→</span></a>
+            <a class="text-link" href="#como-funciona">Ver a órbita em ação <span aria-hidden="true">↓</span></a>
           </div>
-        </div>
-        <div class="bc-mock-rate__footer">
-          <span>⏳ Reset previsto: 5h 12min</span>
-          <span style="color:var(--bc-warning)">Custo extra: R$ 1.756,65</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- 10.4 · Solução · cockpit -->
-<section class="bc-section bc-solution" id="solucao">
-  <div class="bc-container">
-    <div class="bc-section__head bc-reveal" style="max-width:920px">
-      <span class="bc-eyebrow bc-eyebrow--accent">A SOLUÇÃO · ORQUESTRAÇÃO INTELIGENTE</span>
-      <h2 class="bc-section__title">O modelo certo
-para a tarefa certa.<span class="bc-asterisk">*</span></h2>
-      <p class="bc-section__sub">
-        Modelos premium para raciocínio complexo. Modelos eficientes para lógica estruturada. Modelos leves para processamento em massa. Todos executando em paralelo, no mesmo workspace, sob seu comando.
-      </p>
-    </div>
-
-    <div style="font-family:var(--bc-font-mono);font-size:11px;color:var(--bc-text-tertiary);letter-spacing:.04em;text-transform:uppercase;margin-bottom:16px;display:flex;gap:16px;flex-wrap:wrap;align-items:center" class="bc-reveal">
-      <span>[ BRAINCHAIN* COCKPIT · 4 AGENTES · 1 MISSÃO ]</span>
-      <span style="color:var(--bc-success)">● todos online</span>
-      <span style="margin-left:auto"><span class="bc-kbd">⌘</span> <span class="bc-kbd">T</span> nova pane</span>
-    </div>
-
-    <div class="bc-cockpit bc-reveal" data-cockpit="big" aria-label="Cockpit em execução · 4 panes" style="max-width:1200px;margin:0 auto"></div>
-
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:1200px;margin:48px auto 0;text-align:center" class="bc-stagger">
-      <div style="padding:20px;border:1px solid var(--bc-border-soft);border-radius:12px;background:var(--bc-bg-secondary)">
-        <div style="font-family:var(--bc-font-mono);font-size:28px;font-weight:700;color:var(--bc-success);letter-spacing:-0.02em"><span data-tick="65" data-tick-suffix="%">0%</span></div>
-        <div style="font-size:13px;color:var(--bc-text-secondary);margin-top:4px">Redução no custo mensal de API*</div>
-      </div>
-      <div style="padding:20px;border:1px solid var(--bc-border-soft);border-radius:12px;background:var(--bc-bg-secondary)">
-        <div style="font-family:var(--bc-font-mono);font-size:28px;font-weight:700;color:var(--bc-accent-light);letter-spacing:-0.02em"><span data-tick="4" data-tick-suffix="x">0x</span></div>
-        <div style="font-size:13px;color:var(--bc-text-secondary);margin-top:4px">Mais rápido em pipelines paralelizáveis*</div>
-      </div>
-      <div style="padding:20px;border:1px solid var(--bc-border-soft);border-radius:12px;background:var(--bc-bg-secondary)">
-        <div style="font-family:var(--bc-font-mono);font-size:28px;font-weight:700;color:var(--bc-info);letter-spacing:-0.02em"><span data-tick="100" data-tick-suffix="%">0%</span></div>
-        <div style="font-size:13px;color:var(--bc-text-secondary);margin-top:4px">Visibilidade de custo por agente, em tempo real</div>
-      </div>
-    </div>
-    <p style="text-align:center;margin-top:16px;font-family:var(--bc-font-mono);font-size:10px;color:var(--bc-text-muted);letter-spacing:.04em">
-      * dados ilustrativos · varia conforme uso e composição do time
-    </p>
-  </div>
-</section>
-
-<!-- NEW · Múltiplos Projetos -->
-<section class="bc-section bc-section--alt" id="projetos">
-  <div class="bc-container">
-    <div class="bc-section__head bc-reveal">
-      <span class="bc-eyebrow">MÚLTIPLOS PROJETOS</span>
-      <h2 class="bc-section__title">Trabalhe em paralelo,
-não em série.<span class="bc-asterisk">*</span></h2>
-      <p class="bc-section__sub">
-        Sistema de abas no estilo navegador. Cada projeto mantém sua própria cor, agentes, diretório e contexto. Alterne, divida em duas janelas ou destaque uma pane individual — tudo sem reiniciar nada.
-      </p>
-    </div>
-
-    <div class="bc-reveal" data-projects-demo aria-label="Demo: múltiplos projetos, undock e detach" style="position:relative"></div>
-
-    <div class="bc-projects__features" style="margin-top:32px">
-      <div class="bc-projects__feature">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="9"/></svg>
-        <div><strong>Cor por projeto</strong>Cada workspace recebe uma cor de identificação que se propaga na aba, no header e no statusbar.</div>
-      </div>
-      <div class="bc-projects__feature">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-        <div><strong>Destaque a aba</strong>Arraste qualquer aba para fora da janela principal e ela vira uma nova janela independente — útil para split-screen entre dois projetos.</div>
-      </div>
-      <div class="bc-projects__feature">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
-        <div><strong>Destaque a pane</strong>Qualquer pane individual pode virar uma janela flutuante — mantenha um agente específico visível enquanto trabalha em outro projeto.</div>
-      </div>
-      <div class="bc-projects__feature">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7v10a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-6l-2-3H5a2 2 0 0 0-2 2z"/></svg>
-        <div><strong>Estado persistente</strong>Layout, agentes ativos, conversas e arquivos abertos são preservados ao alternar entre projetos ou reiniciar a aplicação.</div>
-      </div>
-    </div>
-  </div>
-</section>
-  </div>
-</section>
-
-<!-- NEW · Ferramentas integradas -->
-<section class="bc-section" id="ferramentas">
-  <div class="bc-container">
-    <div class="bc-section__head bc-reveal">
-      <span class="bc-eyebrow">FERRAMENTAS INTEGRADAS</span>
-      <h2 class="bc-section__title">Tudo o que seus agentes precisam,
-no mesmo cockpit.<span class="bc-asterisk">*</span></h2>
-      <p class="bc-section__sub">
-        Navegador, terminal e área de anotações são componentes nativos. Seus agentes leem URLs, executam comandos, consultam notas — sem trocar de aplicação, sem perder contexto.
-      </p>
-    </div>
-
-    <div class="bc-tools bc-stagger">
-      <div class="bc-tool-card" data-spotlight>
-        <span class="bc-tool-card__icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-        </span>
-        <h3 class="bc-tool-card__title">Navegador nativo</h3>
-        <p class="bc-tool-card__lead">URLs abrem dentro do BrainChain. Agentes leem o código-fonte e o conteúdo das páginas e interagem com a DOM.</p>
-        <ul class="bc-tool-card__list">
-          <li>renderização Chromium</li>
-          <li>execução de JavaScript</li>
-          <li>interação com formulários</li>
-          <li>live reload em desenvolvimento</li>
-        </ul>
-      </div>
-
-      <div class="bc-tool-card" data-spotlight>
-        <span class="bc-tool-card__icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
-        </span>
-        <h3 class="bc-tool-card__title">Terminal nativo</h3>
-        <p class="bc-tool-card__lead">Terminais reais dentro de cada pane. Agentes executam comandos, scripts e testes recebendo o output em tempo real.</p>
-        <ul class="bc-tool-card__list">
-          <li>pty completo · cores ANSI</li>
-          <li>histórico persistido por workspace</li>
-          <li>compartilhado entre agentes</li>
-          <li>exit code e timing por comando</li>
-        </ul>
-      </div>
-
-      <div class="bc-tool-card" data-spotlight>
-        <span class="bc-tool-card__icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-        </span>
-        <h3 class="bc-tool-card__title">Área de anotações</h3>
-        <p class="bc-tool-card__lead">Snippets, decisões e referências compartilhadas. Agentes consultam, referenciam e atualizam — memória persistente do time.</p>
-        <ul class="bc-tool-card__list">
-          <li>markdown completo</li>
-          <li>busca semântica</li>
-          <li>versionada por workspace</li>
-          <li>exportável para markdown/PDF</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="bc-tools-strap bc-reveal">
-      <strong>Integração completa entre componentes.</strong>
-      Um agente abre uma URL, lê o código, registra um insight nas anotações, passa a referência para outro agente refatorar — tudo dentro do mesmo workspace, em paralelo.
-    </div>
-  </div>
-</section>
-
-<!-- NEW · Modelos pré-instalados -->
-<section class="bc-section bc-section--alt" id="modelos">
-  <div class="bc-container">
-    <div class="bc-section__head bc-reveal">
-      <span class="bc-eyebrow">MODELOS PRONTOS PARA USAR</span>
-      <h2 class="bc-section__title">Sem configuração.
-Sem dependências.<span class="bc-asterisk">*</span></h2>
-      <p class="bc-section__sub">
-        Os principais modelos já estão integrados. Use as APIs oficiais com suas próprias credenciais, ou conecte CLIs locais que você já tem instaladas. Sem lock-in.
-      </p>
-    </div>
-
-    <div class="bc-models-split">
-      <div class="bc-models-col bc-reveal">
-        <span class="bc-models-col__eyebrow">PRÉ-INSTALADOS · API OFICIAL</span>
-        <h3 class="bc-models-col__h">Conecte com sua API key, em segundos.</h3>
-        <p class="bc-models-col__lead">Modelos integrados nativamente. Você cola sua credencial, o BrainChain pluga o agente. Nenhum CLI externo necessário.</p>
-        <ul class="bc-models-col__list">
-          <li><span class="bc-glyph bc-glyph--sm bc-glyph--claude"><img src="assets/brands/anthropic.svg" alt="" loading="lazy"></span><span>Claude Opus 4.7 · Sonnet 4.6</span><span class="vendor">Anthropic</span></li>
-          <li><span class="bc-glyph bc-glyph--sm bc-glyph--codex"><img src="assets/brands/openai.svg" alt="" loading="lazy"></span><span>GPT-4o</span><span class="vendor">OpenAI</span></li>
-          <li><span class="bc-glyph bc-glyph--sm bc-glyph--gemini"><img src="assets/brands/gemini.svg" alt="" loading="lazy"></span><span>Gemini 2.0 Flash</span><span class="vendor">Google</span></li>
-          <li><span class="bc-glyph bc-glyph--sm bc-glyph--antigravity"><img src="assets/brands/google.svg" alt="" loading="lazy"></span><span>Antigravity</span><span class="vendor">Google</span></li>
-          <li><span class="bc-glyph bc-glyph--sm bc-glyph--mistral"><img src="assets/brands/mistral.svg" alt="" loading="lazy"></span><span>Mistral Large 2</span><span class="vendor">Mistral</span></li>
-          <li><span class="bc-glyph bc-glyph--sm bc-glyph--llama"><img src="assets/brands/meta.svg" alt="" loading="lazy"></span><span>Llama 3.3 · 3.1 Local</span><span class="vendor">Meta</span></li>
-          <li><span class="bc-glyph bc-glyph--sm bc-glyph--grok"><img src="assets/brands/xai.svg" alt="" loading="lazy"></span><span>Grok 2</span><span class="vendor">xAI</span></li>
-          <li><span class="bc-glyph bc-glyph--sm bc-glyph--deepseek"><img src="assets/brands/deepseek.svg" alt="" loading="lazy"></span><span>DeepSeek V4</span><span class="vendor">DeepSeek</span></li>
-          <li><span class="bc-glyph bc-glyph--sm bc-glyph--qwen"><img src="assets/brands/qwen.svg" alt="" loading="lazy"></span><span>Qwen 3 Coder</span><span class="vendor">Alibaba</span></li>
-          <li><span class="bc-glyph bc-glyph--sm bc-glyph--cohere"><img src="assets/brands/cohere.svg" alt="" loading="lazy"></span><span>Cohere Command R+</span><span class="vendor">Cohere</span></li>
-        </ul>
-      </div>
-
-      <div class="bc-models-col bc-reveal">
-        <span class="bc-models-col__eyebrow">COMPATIBILIDADE · CLIs LOCAIS</span>
-        <h3 class="bc-models-col__h">Já tem Claude Code ou Codex CLI? Eles são detectados.</h3>
-        <p class="bc-models-col__lead">Se você já configurou CLIs no seu sistema, BrainChain os reconhece automaticamente. Use APIs oficiais, CLIs locais — ou combine as duas abordagens no mesmo workspace.</p>
-
-        <div class="bc-models-col__steps">
-          <span class="n">01</span><span>BrainChain escaneia seu <span class="bc-mono">$PATH</span> ao iniciar.</span>
-          <span class="n">02</span><span>CLIs encontradas aparecem no menu <span class="bc-mono">+ Pane</span> automaticamente.</span>
-          <span class="n">03</span><span>Selecione o que preferir: API oficial ou CLI local.</span>
-          <span class="n">04</span><span>Misture livremente. Cada pane pode usar uma abordagem diferente.</span>
+          <p class="alpha-note">Em desenvolvimento · Alpha v0.0.7</p>
         </div>
 
-        <div class="bc-models-col__mock">
-          <div><span class="label">$</span> <span class="arrow">brainchain</span> scan --clis</div>
-          <div><span class="ok">✓</span> claude code · v1.4.2 · ~/.local/bin/claude</div>
-          <div><span class="ok">✓</span> codex · v0.9.0 · /usr/local/bin/codex</div>
-          <div><span class="ok">✓</span> gemini · v2.0.1 · ~/.cargo/bin/gemini</div>
-          <div><span class="ok">✓</span> ollama · v0.4.6 · /usr/local/bin/ollama</div>
-          <div style="color:var(--bc-text-muted);margin-top:6px">4 CLIs locais detectadas · 10 APIs nativas disponíveis</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- 10.5 · Construindo seu time -->
-<section class="bc-section" id="squad">
-  <div class="bc-container">
-    <div class="bc-section__head bc-reveal">
-      <span class="bc-eyebrow">CONSTRUINDO SEU TIME IDEAL</span>
-      <h2 class="bc-section__title">Refatoração e testes
-de um módulo crítico.<span class="bc-asterisk">*</span></h2>
-      <p class="bc-section__sub">
-        Cada agente tem uma função específica. Você escolhe o modelo correto para cada papel. Resultado típico: código refatorado e testado em 2 dias, contra 5 dias usando um único modelo premium.
-      </p>
-    </div>
-
-    <div class="bc-squad bc-stagger" data-bars>
-      <div class="bc-role-card" data-spotlight data-tilt="3">
-        <span class="bc-role-card__score" data-tick="94">94</span>
-        <span class="bc-role-card__handle">@lideranca</span>
-        <span class="bc-role-card__role">LIDERANÇA</span>
-        <span class="bc-role-card__model">Claude Opus 4.7</span>
-        <p class="bc-role-card__desc">Decompõe a missão, distribui responsabilidades, valida a entrega final.</p>
-        <div class="bc-role-card__metrics">
-          <span>LÓGICA</span>   <div class="bc-bar"><div class="bc-bar__fill" data-fill="96%"></div></div>
-          <span>CONTEXTO</span> <div class="bc-bar"><div class="bc-bar__fill" data-fill="92%"></div></div>
-          <span>VELOCID.</span> <div class="bc-bar"><div class="bc-bar__fill" data-fill="55%"></div></div>
-          <span>CUSTO</span>    <div class="bc-bar bc-bar--error"><div class="bc-bar__fill" data-fill="85%"></div></div>
-        </div>
-        <span class="bc-role-card__fit"><svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> FIT P/ POSIÇÃO · ÓTIMO</span>
-      </div>
-
-      <div class="bc-role-card" data-spotlight data-tilt="3">
-        <span class="bc-role-card__score" data-tick="88">88</span>
-        <span class="bc-role-card__handle">@implementa</span>
-        <span class="bc-role-card__role">IMPLEMENTAÇÃO</span>
-        <span class="bc-role-card__model">GPT-4o</span>
-        <p class="bc-role-card__desc">Diff cirúrgico. Adere ao estilo do repositório e escreve no padrão existente.</p>
-        <div class="bc-role-card__metrics">
-          <span>LÓGICA</span>   <div class="bc-bar"><div class="bc-bar__fill" data-fill="88%"></div></div>
-          <span>CONTEXTO</span> <div class="bc-bar"><div class="bc-bar__fill" data-fill="80%"></div></div>
-          <span>VELOCID.</span> <div class="bc-bar"><div class="bc-bar__fill" data-fill="70%"></div></div>
-          <span>CUSTO</span>    <div class="bc-bar bc-bar--neutral"><div class="bc-bar__fill" data-fill="50%"></div></div>
-        </div>
-        <span class="bc-role-card__fit"><svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> FIT P/ POSIÇÃO · ÓTIMO</span>
-      </div>
-
-      <div class="bc-role-card" data-spotlight data-tilt="3">
-        <span class="bc-role-card__score" data-tick="86">86</span>
-        <span class="bc-role-card__handle">@pesquisa</span>
-        <span class="bc-role-card__role">PESQUISA</span>
-        <span class="bc-role-card__model">Gemini 2.0 Flash</span>
-        <p class="bc-role-card__desc">Varre documentação, repositórios e referências. Devolve sumário acionável.</p>
-        <div class="bc-role-card__metrics">
-          <span>LÓGICA</span>   <div class="bc-bar"><div class="bc-bar__fill" data-fill="74%"></div></div>
-          <span>CONTEXTO</span> <div class="bc-bar"><div class="bc-bar__fill" data-fill="78%"></div></div>
-          <span>VELOCID.</span> <div class="bc-bar bc-bar--success"><div class="bc-bar__fill" data-fill="98%"></div></div>
-          <span>CUSTO</span>    <div class="bc-bar bc-bar--success"><div class="bc-bar__fill" data-fill="18%"></div></div>
-        </div>
-        <span class="bc-role-card__fit"><svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> FIT P/ POSIÇÃO · ÓTIMO</span>
-      </div>
-
-      <div class="bc-role-card" data-spotlight data-tilt="3">
-        <span class="bc-role-card__score" data-tick="91">91</span>
-        <span class="bc-role-card__handle">@revisor</span>
-        <span class="bc-role-card__role">REVISÃO</span>
-        <span class="bc-role-card__model">Claude Sonnet 4.6</span>
-        <p class="bc-role-card__desc">Revisa o trabalho da implementação. Identifica regressões e edge cases.</p>
-        <div class="bc-role-card__metrics">
-          <span>LÓGICA</span>   <div class="bc-bar"><div class="bc-bar__fill" data-fill="90%"></div></div>
-          <span>CONTEXTO</span> <div class="bc-bar"><div class="bc-bar__fill" data-fill="86%"></div></div>
-          <span>VELOCID.</span> <div class="bc-bar"><div class="bc-bar__fill" data-fill="72%"></div></div>
-          <span>CUSTO</span>    <div class="bc-bar bc-bar--neutral"><div class="bc-bar__fill" data-fill="60%"></div></div>
-        </div>
-        <span class="bc-role-card__fit"><svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> FIT P/ POSIÇÃO · ÓTIMO</span>
-      </div>
-
-      <div class="bc-role-card" data-spotlight data-tilt="3">
-        <span class="bc-role-card__score" data-tick="84">84</span>
-        <span class="bc-role-card__handle">@testes</span>
-        <span class="bc-role-card__role">TESTES</span>
-        <span class="bc-role-card__model">Llama 3.3</span>
-        <p class="bc-role-card__desc">Roda a suíte, escreve casos de borda, devolve relatório verde ou vermelho.</p>
-        <div class="bc-role-card__metrics">
-          <span>LÓGICA</span>   <div class="bc-bar"><div class="bc-bar__fill" data-fill="76%"></div></div>
-          <span>CONTEXTO</span> <div class="bc-bar"><div class="bc-bar__fill" data-fill="68%"></div></div>
-          <span>VELOCID.</span> <div class="bc-bar bc-bar--success"><div class="bc-bar__fill" data-fill="92%"></div></div>
-          <span>CUSTO</span>    <div class="bc-bar bc-bar--success"><div class="bc-bar__fill" data-fill="22%"></div></div>
-        </div>
-        <span class="bc-role-card__fit"><svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> FIT P/ POSIÇÃO · ÓTIMO</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- 10.6 · Comparativo -->
-<section class="bc-section bc-section--alt" id="benchmarks">
-  <div class="bc-container">
-    <div class="bc-section__head bc-reveal">
-      <span class="bc-eyebrow">COMPARATIVO DE MODELOS</span>
-      <h2 class="bc-section__title">Qual modelo usar
-para cada tarefa.<span class="bc-asterisk">*</span></h2>
-      <p class="bc-section__sub">
-        Dados públicos consolidados. Nenhum modelo vence em todas as dimensões — existe o modelo certo para cada tipo de tarefa. Com BrainChain, você escolhe por tarefa, não por projeto inteiro.
-      </p>
-    </div>
-
-    <div class="bc-bench__head-bar bc-reveal">
-      <span>auditado · 2026-05-01</span>
-      <span style="color:var(--bc-text-muted)">·</span>
-      <span style="color:var(--bc-accent-light);display:inline-flex;align-items:center;gap:4px">
-        <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
-        ATUALIZAR
-      </span>
-      <span style="margin-left:auto;font-family:var(--bc-font-sans);text-transform:none;letter-spacing:0;color:var(--bc-text-muted);font-size:13px">
-        fonte: artificialanalysis.ai · valores aproximados · ilustrativos
-      </span>
-    </div>
-
-    <div class="bc-bench-wrap bc-reveal">
-      <table class="bc-rate-table">
-        <thead>
-          <tr>
-            <th>Modelo</th>
-            <th>Inteligência</th>
-            <th>Velocidade</th>
-            <th>Custo*</th>
-            <th>Categoria</th>
-            <th>Melhor para</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="model"><span class="bc-glyph bc-glyph--sm bc-glyph--claude" style="margin-right:8px;vertical-align:-5px"><img src="assets/brands/anthropic.svg" alt="" loading="lazy"></span>Claude Opus 4.7<span class="vendor">Anthropic</span></td>
-            <td>{{r5}}</td>
-            <td>{{r2-speed}}</td>
-            <td>{{r5-cost}}</td>
-            <td><span class="tag tag--warn">PREMIUM</span></td>
-            <td class="best">Raciocínio complexo, análise profunda</td>
-          </tr>
-          <tr>
-            <td class="model"><span class="bc-glyph bc-glyph--sm bc-glyph--codex" style="margin-right:8px;vertical-align:-5px"><img src="assets/brands/openai.svg" alt="" loading="lazy"></span>GPT-4o<span class="vendor">OpenAI</span></td>
-            <td>{{r5}}</td>
-            <td>{{r3-speed}}</td>
-            <td>{{r4-cost}}</td>
-            <td><span class="tag tag--warn">PREMIUM</span></td>
-            <td class="best">Visão, processamento multimodal</td>
-          </tr>
-          <tr>
-            <td class="model"><span class="bc-glyph bc-glyph--sm bc-glyph--gemini" style="margin-right:8px;vertical-align:-5px"><img src="assets/brands/gemini.svg" alt="" loading="lazy"></span>Gemini 2.0 Flash<span class="vendor">Google</span></td>
-            <td>{{r4}}</td>
-            <td>{{r5-speed}}</td>
-            <td>{{r2-cost}}</td>
-            <td><span class="tag tag--ok">EFICIENTE</span></td>
-            <td class="best">Processamento rápido, economia em massa</td>
-          </tr>
-          <tr>
-            <td class="model"><span class="bc-glyph bc-glyph--sm bc-glyph--claude" style="margin-right:8px;vertical-align:-5px"><img src="assets/brands/anthropic.svg" alt="" loading="lazy"></span>Claude Sonnet 4.6<span class="vendor">Anthropic</span></td>
-            <td>{{r4}}</td>
-            <td>{{r4-speed}}</td>
-            <td>{{r3-cost}}</td>
-            <td><span class="tag tag--info">BALANCEADO</span></td>
-            <td class="best">Revisão de código, refatoração</td>
-          </tr>
-          <tr>
-            <td class="model"><span class="bc-glyph bc-glyph--sm bc-glyph--mistral" style="margin-right:8px;vertical-align:-5px"><img src="assets/brands/mistral.svg" alt="" loading="lazy"></span>Mistral Large 2<span class="vendor">Mistral</span></td>
-            <td>{{r4}}</td>
-            <td>{{r4-speed}}</td>
-            <td>{{r2-cost}}</td>
-            <td><span class="tag">OPEN-WEIGHTS</span></td>
-            <td class="best">Alternativa europeia, pesos abertos</td>
-          </tr>
-          <tr>
-            <td class="model"><span class="bc-glyph bc-glyph--sm bc-glyph--llama" style="margin-right:8px;vertical-align:-5px"><img src="assets/brands/meta.svg" alt="" loading="lazy"></span>Llama 3.3 · 3.1 Local<span class="vendor">Meta</span></td>
-            <td>{{r3}}</td>
-            <td>{{r5-speed}}</td>
-            <td>{{r1-cost}}</td>
-            <td><span class="tag tag--ok">SELF-HOSTED</span></td>
-            <td class="best">Privacidade total, sem custos de API</td>
-          </tr>
-          <tr>
-            <td class="model"><span class="bc-glyph bc-glyph--sm bc-glyph--grok" style="margin-right:8px;vertical-align:-5px"><img src="assets/brands/xai.svg" alt="" loading="lazy"></span>Grok 2<span class="vendor">xAI</span></td>
-            <td>{{r3}}</td>
-            <td>{{r3-speed}}</td>
-            <td>{{r3-cost}}</td>
-            <td><span class="tag tag--neutral">REAL-TIME</span></td>
-            <td class="best">Acesso a contexto em tempo real</td>
-          </tr>
-          <tr>
-            <td class="model"><span class="bc-glyph bc-glyph--sm bc-glyph--deepseek" style="margin-right:8px;vertical-align:-5px"><img src="assets/brands/deepseek.svg" alt="" loading="lazy"></span>DeepSeek V4<span class="vendor">DeepSeek</span></td>
-            <td>{{r4}}</td>
-            <td>{{r4-speed}}</td>
-            <td>{{r1-cost}}</td>
-            <td><span class="tag tag--ok">CACHE</span></td>
-            <td class="best">Pipelines com forte reuso de contexto</td>
-          </tr>
-          <tr>
-            <td class="model"><span class="bc-glyph bc-glyph--sm bc-glyph--qwen" style="margin-right:8px;vertical-align:-5px"><img src="assets/brands/qwen.svg" alt="" loading="lazy"></span>Qwen 3 Coder<span class="vendor">Alibaba</span></td>
-            <td>{{r4}}</td>
-            <td>{{r4-speed}}</td>
-            <td>{{r1-cost}}</td>
-            <td><span class="tag tag--ok">CODE-FIRST</span></td>
-            <td class="best">Problemas específicos de código, long-context</td>
-          </tr>
-          <tr>
-            <td class="model"><span class="bc-glyph bc-glyph--sm bc-glyph--antigravity" style="margin-right:8px;vertical-align:-5px"><img src="assets/brands/google.svg" alt="" loading="lazy"></span>Antigravity<span class="vendor">Google</span></td>
-            <td>{{r4}}</td>
-            <td>{{r4-speed}}</td>
-            <td>{{r3-cost}}</td>
-            <td><span class="tag tag--info">EXPERIMENTAL</span></td>
-            <td class="best">Raciocínio matemático e simbólico</td>
-          </tr>
-          <tr>
-            <td class="model"><span class="bc-glyph bc-glyph--sm bc-glyph--cohere" style="margin-right:8px;vertical-align:-5px"><img src="assets/brands/cohere.svg" alt="" loading="lazy"></span>Cohere Command R+<span class="vendor">Cohere</span></td>
-            <td>{{r3}}</td>
-            <td>{{r3-speed}}</td>
-            <td>{{r2-cost}}</td>
-            <td><span class="tag tag--neutral">ENTERPRISE</span></td>
-            <td class="best">RAG, integrações customizadas</td>
-          </tr>
-        </tbody>
-      </table>
-      <div class="bc-bench__caption">
-        <strong>Conclusão.</strong> Não existe modelo certo universal — existe modelo certo para cada tarefa. Com BrainChain você escolhe por papel, não por projeto inteiro. *Custo: menos pontos = mais barato.
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- 10.7 · Recomendação de uso -->
-<section class="bc-section" id="qualifier">
-  <div class="bc-container">
-    <div class="bc-section__head bc-reveal">
-      <span class="bc-eyebrow">RECOMENDAÇÃO DE USO</span>
-      <h2 class="bc-section__title">Para quem é.
-E para quem ainda não é.<span class="bc-asterisk">*</span></h2>
-    </div>
-
-    <div class="bc-qualif">
-      <div class="bc-qualif__col bc-reveal">
-        <div class="bc-qualif__title"><span class="bc-qualif__diamond">◆</span> Você deve usar BrainChain se</div>
-        <ul class="bc-qualif__list">
-          <li><span class="sign">+</span><span>Desenvolve em Windows (macOS e Linux em breve)</span></li>
-          <li><span class="sign">+</span><span>Mantém APIs ativas em múltiplos provedores</span></li>
-          <li><span class="sign">+</span><span>Está aberto a produto em evolução com updates frequentes</span></li>
-          <li><span class="sign">+</span><span>Precisa orquestrar 2 a 8 agentes em um único workspace</span></li>
-          <li><span class="sign">+</span><span>Já consome IA em pipelines de desenvolvimento</span></li>
-          <li><span class="sign">+</span><span>Quer visibilidade de custo por agente em tempo real</span></li>
-          <li><span class="sign">+</span><span>É confortável com terminal e linha de comando</span></li>
-        </ul>
-      </div>
-      <div class="bc-qualif__col bc-qualif--no bc-reveal">
-        <div class="bc-qualif__title"><span class="bc-qualif__diamond">◆</span> BrainChain ainda não é para você se</div>
-        <ul class="bc-qualif__list">
-          <li><span class="sign">−</span><span>Precisa de produto de produção polido, sem variações</span></li>
-          <li><span class="sign">−</span><span>Nunca abriu um terminal</span></li>
-          <li><span class="sign">−</span><span>Trabalha exclusivamente com um único modelo de IA</span></li>
-          <li><span class="sign">−</span><span>Exige SLA contratual e suporte enterprise garantido</span></li>
-          <li><span class="sign">−</span><span>Requer suporte 24/7 por telefone</span></li>
-          <li><span class="sign">−</span><span>Não tem interesse em multi-agente neste momento</span></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- 10.8 · Perguntas frequentes -->
-<section class="bc-section bc-section--alt" id="faq">
-  <div class="bc-container">
-    <div class="bc-section__head bc-reveal">
-      <span class="bc-eyebrow">PERGUNTAS FREQUENTES</span>
-      <h2 class="bc-section__title">Antes de baixar.<span class="bc-asterisk">*</span></h2>
-    </div>
-
-    <div class="bc-faq bc-reveal">
-      <div class="bc-faq__item" data-open="true">
-        <button class="bc-faq__q" aria-expanded="true">
-          <span class="num">01</span>
-          <span class="label">Preciso conhecer Claude Code ou CLIs antes de começar?</span>
-          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-        </button>
-        <div class="bc-faq__a"><div class="bc-faq__inner">Não. BrainChain abstrai a interação. Pressione <span class="bc-mono">⌘+T</span> para abrir uma pane, escreva sua instrução, o agente decompõe e executa. Se você já usa CLIs nativamente, todos os atalhos continuam funcionando dentro de cada pane.</div></div>
-      </div>
-      <div class="bc-faq__item">
-        <button class="bc-faq__q" aria-expanded="false"><span class="num">02</span><span class="label">Está disponível para macOS e Linux?</span><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
-        <div class="bc-faq__a"><div class="bc-faq__inner">Windows está disponível agora. macOS (Apple Silicon e Intel) e Linux serão lançados em breve, no mesmo plano de preços.</div></div>
-      </div>
-      <div class="bc-faq__item">
-        <button class="bc-faq__q" aria-expanded="false"><span class="num">03</span><span class="label">É adequado para desenvolvedores em início de carreira?</span><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
-        <div class="bc-faq__a"><div class="bc-faq__inner">Se você já clonou um repositório e abriu um terminal, está pronto. A documentação cobre os fluxos principais, e a comunidade no Discord concentra feedback, setups, bugs e ideias vindas de usuários reais.</div></div>
-      </div>
-      <div class="bc-faq__item">
-        <button class="bc-faq__q" aria-expanded="false"><span class="num">04</span><span class="label">O produto é estável?</span><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
-        <div class="bc-faq__a"><div class="bc-faq__inner">BrainChain está em alpha. Recuperação automática de crash persiste o estado das panes. Updates ocorrem a cada release. Issues e correções são públicas e rastreáveis.</div></div>
-      </div>
-      <div class="bc-faq__item">
-        <button class="bc-faq__q" aria-expanded="false"><span class="num">05</span><span class="label">Qual é a economia real em custos de API?</span><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
-        <div class="bc-faq__a"><div class="bc-faq__inner">Depende do uso. Times que executam apenas modelos premium em todas as tarefas registram economia de 60–75% ao distribuir as cargas. A economia vem de transferir trabalho repetitivo para modelos eficientes.</div></div>
-      </div>
-      <div class="bc-faq__item">
-        <button class="bc-faq__q" aria-expanded="false"><span class="num">06</span><span class="label">BrainChain inclui tokens dos modelos?</span><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
-        <div class="bc-faq__a"><div class="bc-faq__inner">Não. Você paga API diretamente a cada provedor (Anthropic, OpenAI, Google, Mistral, Meta, DeepSeek, Alibaba, xAI, Cohere). BrainChain orquestra os modelos — não revende tokens.</div></div>
-      </div>
-      <div class="bc-faq__item">
-        <button class="bc-faq__q" aria-expanded="false"><span class="num">07</span><span class="label">Qual é a diferença em relação ao Claude Code desktop?</span><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
-        <div class="bc-faq__a"><div class="bc-faq__inner">Claude Code opera com um modelo por conversa. BrainChain coordena múltiplos modelos em paralelo, cada um em sua função, com cockpit visual e telemetria de custo em tempo real.</div></div>
-      </div>
-      <div class="bc-faq__item">
-        <button class="bc-faq__q" aria-expanded="false"><span class="num">08</span><span class="label">Como se compara com Cursor, Warp ou Hydra?</span><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
-        <div class="bc-faq__a"><div class="bc-faq__inner">Cursor é editor de código com IA integrada. Warp é terminal com IA. Hydra é executor swarm. BrainChain é IDE com cockpit visual e orquestrador inter-agente, focado em coordenar de 2 a 8 modelos em paralelo.</div></div>
-      </div>
-      <div class="bc-faq__item">
-        <button class="bc-faq__q" aria-expanded="false"><span class="num">09</span><span class="label">Modelos eficientes substituem modelos premium?</span><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
-        <div class="bc-faq__a"><div class="bc-faq__inner">Em tarefas complexas (refatoração arquitetural, lógica de autenticação, decisões de design), modelos premium ainda lideram. Modelos eficientes brilham em execução estruturada: rotas, schemas, testes, processamento em massa. A composição correta é decisão sua.</div></div>
-      </div>
-      <div class="bc-faq__item">
-        <button class="bc-faq__q" aria-expanded="false"><span class="num">10</span><span class="label">Quando o pricing comercial será publicado?</span><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
-        <div class="bc-faq__a"><div class="bc-faq__inner">Em breve. Enquanto isso, o plano Free está disponível integralmente. Cadastre seu email no rodapé para ser informado primeiro.</div></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- 10.9 · Agentes -->
-<section class="bc-section" id="agentes">
-  <div class="bc-container">
-    <div class="bc-section__head bc-reveal">
-      <span class="bc-eyebrow">AGENTES SUPORTADOS</span>
-      <h2 class="bc-section__title">10+ modelos integrados.
-1 cockpit unificado.<span class="bc-asterisk">*</span></h2>
-    </div>
-
-    <div class="bc-agents-grid bc-stagger" style="grid-template-columns:repeat(5,1fr)">
-      <div class="bc-agent-tile" data-spotlight data-tilt="4" style="border-left-color:var(--bc-agent-claude)">
-        <div class="bc-agent-tile__head"><span class="bc-glyph bc-glyph--claude"><img src="assets/brands/anthropic.svg" alt="" loading="lazy"></span><span class="bc-agent-tile__name">Anthropic Claude</span></div>
-        <span style="font-size:11px;color:var(--bc-text-tertiary);font-family:var(--bc-font-mono)">Opus 4.7 · Sonnet 4.6</span>
-        <span class="bc-agent-tile__cli">claude code</span>
-        <span class="bc-chip bc-chip--success" style="align-self:flex-start"><span class="bc-dot" style="width:5px;height:5px"></span> SUPORTADO</span>
-      </div>
-      <div class="bc-agent-tile" data-spotlight data-tilt="4" style="border-left-color:var(--bc-agent-codex)">
-        <div class="bc-agent-tile__head"><span class="bc-glyph bc-glyph--codex"><img src="assets/brands/openai.svg" alt="" loading="lazy"></span><span class="bc-agent-tile__name">OpenAI GPT-4o</span></div>
-        <span style="font-size:11px;color:var(--bc-text-tertiary);font-family:var(--bc-font-mono)">multimodal · visão</span>
-        <span class="bc-agent-tile__cli">codex</span>
-        <span class="bc-chip bc-chip--success" style="align-self:flex-start"><span class="bc-dot" style="width:5px;height:5px"></span> SUPORTADO</span>
-      </div>
-      <div class="bc-agent-tile" data-spotlight data-tilt="4" style="border-left-color:var(--bc-agent-gemini)">
-        <div class="bc-agent-tile__head"><span class="bc-glyph bc-glyph--gemini"><img src="assets/brands/gemini.svg" alt="" loading="lazy"></span><span class="bc-agent-tile__name">Google Gemini 2.0</span></div>
-        <span style="font-size:11px;color:var(--bc-text-tertiary);font-family:var(--bc-font-mono)">Flash · alta velocidade</span>
-        <span class="bc-agent-tile__cli">gemini</span>
-        <span class="bc-chip bc-chip--success" style="align-self:flex-start"><span class="bc-dot" style="width:5px;height:5px"></span> SUPORTADO</span>
-      </div>
-      <div class="bc-agent-tile" data-spotlight data-tilt="4" style="border-left-color:#4285f4">
-        <div class="bc-agent-tile__head"><span class="bc-glyph bc-glyph--antigravity"><img src="assets/brands/google.svg" alt="" loading="lazy"></span><span class="bc-agent-tile__name">Google Antigravity</span></div>
-        <span style="font-size:11px;color:var(--bc-text-tertiary);font-family:var(--bc-font-mono)">raciocínio simbólico</span>
-        <span class="bc-agent-tile__cli">antigravity</span>
-        <span class="bc-chip bc-chip--info" style="align-self:flex-start">PREVIEW</span>
-      </div>
-      <div class="bc-agent-tile" data-spotlight data-tilt="4" style="border-left-color:var(--bc-agent-mistral)">
-        <div class="bc-agent-tile__head"><span class="bc-glyph bc-glyph--mistral"><img src="assets/brands/mistral.svg" alt="" loading="lazy"></span><span class="bc-agent-tile__name">Mistral Large 2</span></div>
-        <span style="font-size:11px;color:var(--bc-text-tertiary);font-family:var(--bc-font-mono)">open-weights · europeu</span>
-        <span class="bc-agent-tile__cli">mistral</span>
-        <span class="bc-chip bc-chip--success" style="align-self:flex-start"><span class="bc-dot" style="width:5px;height:5px"></span> SUPORTADO</span>
-      </div>
-      <div class="bc-agent-tile" data-spotlight data-tilt="4" style="border-left-color:var(--bc-agent-llama)">
-        <div class="bc-agent-tile__head"><span class="bc-glyph bc-glyph--llama"><img src="assets/brands/meta.svg" alt="" loading="lazy"></span><span class="bc-agent-tile__name">Meta Llama 3.3</span></div>
-        <span style="font-size:11px;color:var(--bc-accent-light);font-family:var(--bc-font-mono)">+ Llama 3.1 local · self-host</span>
-        <span class="bc-agent-tile__cli">llama</span>
-        <span class="bc-chip bc-chip--success" style="align-self:flex-start"><span class="bc-dot" style="width:5px;height:5px"></span> SUPORTADO</span>
-      </div>
-      <div class="bc-agent-tile" data-spotlight data-tilt="4" style="border-left-color:#9ca3af">
-        <div class="bc-agent-tile__head"><span class="bc-glyph bc-glyph--grok"><img src="assets/brands/xai.svg" alt="" loading="lazy"></span><span class="bc-agent-tile__name">xAI Grok 2</span></div>
-        <span style="font-size:11px;color:var(--bc-text-tertiary);font-family:var(--bc-font-mono)">contexto em tempo real</span>
-        <span class="bc-agent-tile__cli">grok</span>
-        <span class="bc-chip bc-chip--success" style="align-self:flex-start"><span class="bc-dot" style="width:5px;height:5px"></span> SUPORTADO</span>
-      </div>
-      <div class="bc-agent-tile" data-spotlight data-tilt="4" style="border-left-color:var(--bc-agent-deepseek)">
-        <div class="bc-agent-tile__head"><span class="bc-glyph bc-glyph--deepseek"><img src="assets/brands/deepseek.svg" alt="" loading="lazy"></span><span class="bc-agent-tile__name">DeepSeek V4</span></div>
-        <span style="font-size:11px;color:var(--bc-text-tertiary);font-family:var(--bc-font-mono)">cache-optimized</span>
-        <span class="bc-agent-tile__cli">deepseek</span>
-        <span class="bc-chip bc-chip--success" style="align-self:flex-start"><span class="bc-dot" style="width:5px;height:5px"></span> SUPORTADO</span>
-      </div>
-      <div class="bc-agent-tile" data-spotlight data-tilt="4" style="border-left-color:var(--bc-agent-qwen)">
-        <div class="bc-agent-tile__head"><span class="bc-glyph bc-glyph--qwen"><img src="assets/brands/qwen.svg" alt="" loading="lazy"></span><span class="bc-agent-tile__name">Alibaba Qwen 3</span></div>
-        <span style="font-size:11px;color:var(--bc-text-tertiary);font-family:var(--bc-font-mono)">code-first · long ctx</span>
-        <span class="bc-agent-tile__cli">qwen</span>
-        <span class="bc-chip bc-chip--success" style="align-self:flex-start"><span class="bc-dot" style="width:5px;height:5px"></span> SUPORTADO</span>
-      </div>
-      <div class="bc-agent-tile" data-spotlight data-tilt="4" style="border-left-color:var(--bc-agent-cohere)">
-        <div class="bc-agent-tile__head"><span class="bc-glyph bc-glyph--cohere"><img src="assets/brands/cohere.svg" alt="" loading="lazy"></span><span class="bc-agent-tile__name">Cohere Command R+</span></div>
-        <span style="font-size:11px;color:var(--bc-text-tertiary);font-family:var(--bc-font-mono)">RAG · enterprise</span>
-        <span class="bc-agent-tile__cli">cohere</span>
-        <span class="bc-chip bc-chip--success" style="align-self:flex-start"><span class="bc-dot" style="width:5px;height:5px"></span> SUPORTADO</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- 10.10 · Comunidade -->
-<section class="bc-section bc-section--community" id="comunidade">
-  <div class="bc-container">
-    <div class="bc-community">
-      <div class="bc-community__copy bc-reveal">
-        <span class="bc-eyebrow bc-eyebrow--accent">COMUNIDADE</span>
-        <h2 class="bc-section__title">Entre no Discord
-onde os agentes viram workflow.<span class="bc-asterisk">*</span></h2>
-        <p class="bc-section__sub">Um espaço para trocar prompts, comparar modelos, pedir ajuda de instalação, mostrar stacks multi-agente e acompanhar o build in public do BrainChain.</p>
-
-        <div class="bc-community__stats" aria-label="Atividade simulada da comunidade">
-          <span><strong>1.284</strong> membros</span>
-          <span><strong>186</strong> online</span>
-          <span><strong>42</strong> threads ativas</span>
-        </div>
-
-        <div class="bc-community__actions">
-          <a href="https://discord.gg/brainchain" target="_blank" rel="noopener" class="bc-btn bc-btn--lg bc-btn--primary" data-magnetic>
-            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.32 4.37A19.8 19.8 0 0 0 15.36 2l-.24.48c-.12.24-.23.48-.33.73a18.3 18.3 0 0 0-5.58 0 9.8 9.8 0 0 0-.57-1.21 19.8 19.8 0 0 0-4.96 2.37C.52 9.1-.34 13.7.09 18.23A19.9 19.9 0 0 0 6.18 21.3c.49-.66.93-1.36 1.31-2.09-.72-.27-1.41-.6-2.07-.99l.5-.39c3.98 1.86 8.31 1.86 12.24 0l.5.39c-.66.39-1.35.72-2.07.99.38.73.82 1.43 1.31 2.09a19.9 19.9 0 0 0 6.1-3.07c.5-5.25-.86-9.81-3.68-13.86ZM8.02 15.46c-1.19 0-2.16-1.09-2.16-2.43s.95-2.44 2.16-2.44 2.18 1.1 2.16 2.44c0 1.34-.96 2.43-2.16 2.43Zm7.96 0c-1.19 0-2.16-1.09-2.16-2.43s.95-2.44 2.16-2.44 2.18 1.1 2.16 2.44c0 1.34-.95 2.43-2.16 2.43Z"/></svg>
-            Entrar no Discord
-          </a>
-          <a href="login.html" class="bc-btn bc-btn--lg bc-btn--ghost" data-magnetic>Entrar com Google</a>
-        </div>
-      </div>
-
-      <div class="bc-discord-sim bc-reveal" data-discord-sim aria-label="Simulação de conversa no Discord">
-        <aside class="bc-discord-sim__servers" aria-hidden="true">
-          <span class="server is-home">BC</span>
-          <span class="server">AI</span>
-          <span class="server">⌘</span>
-        </aside>
-        <aside class="bc-discord-sim__channels" aria-hidden="true">
-          <div class="bc-discord-sim__workspace">BrainChain</div>
-          <span class="channel is-active"># brainchain-lab</span>
-          <span class="channel"># setups</span>
-          <span class="channel"># alpha-feedback</span>
-          <span class="channel"># showcases</span>
-        </aside>
-        <main class="bc-discord-sim__chat">
-          <div class="bc-discord-sim__top">
-            <div>
-              <strong># brainchain-lab</strong>
-              <span>workflows multi-agente em tempo real</span>
-            </div>
-            <span><b></b> 186 online</span>
+        <div class="mission-console" aria-label="Demonstração visual de uma orquestração BrainChain">
+          <div class="console-topbar"><span class="signal"></span><span>MISSÃO / landing-refactor</span><span class="console-status">4 agentes conectados</span></div>
+          <div class="orbit-stage">
+            <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="orbit orbit-three"></div>
+            <div class="trajectory trajectory-a"></div><div class="trajectory trajectory-b"></div>
+            <div class="core-node"><span>VOCÊ</span><strong>coordena</strong></div>
+            <div class="agent agent-codex"><span class="agent-dot"></span><b>Codex</b><small>A001 · código</small></div>
+            <div class="agent agent-claude"><span class="agent-dot"></span><b>Claude</b><small>A002 · revisão</small></div>
+            <div class="agent agent-gemini"><span class="agent-dot"></span><b>Gemini</b><small>A003 · pesquisa</small></div>
+            <div class="agent agent-kimi"><span class="agent-dot"></span><b>Kimi</b><small>A004 · testes</small></div>
+            <div class="pulse p-one"></div><div class="pulse p-two"></div>
           </div>
-          <div class="bc-discord-sim__body" data-discord-feed></div>
-          <div class="bc-discord-sim__typing" data-discord-typing>
-            <span>marina.ai está digitando</span>
-            <div><i></i><i></i><i></i></div>
-          </div>
-          <div class="bc-discord-sim__composer">
-            <span>Mensagem em #brainchain-lab</span>
-            <div>+</div>
-          </div>
-        </main>
-      </div>
-    </div>
-  </div>
-</section>
+          <div class="console-footer"><span>ORQ_CMD</span><code>SEND A002 revise o fluxo de login</code><i>enviado</i></div>
+        </div>
+      </section>
 
-<!-- 10.11 · Preços -->
-<section class="bc-section bc-section--pricing" id="precos">
-  <div class="bc-container">
-    <div class="bc-section__head bc-reveal">
-      <span class="bc-eyebrow">PLANOS</span>
-      <h2 class="bc-section__title">Mensal ou anual.
-Cancele quando precisar.<span class="bc-asterisk">*</span></h2>
-    </div>
+      <section id="como-funciona" class="how" aria-labelledby="how-title">
+        <div class="section-heading">
+          <p class="mission-line"><span></span> UMA VISÃO, VÁRIAS TRAJETÓRIAS</p>
+          <h2 id="how-title">Menos troca de janelas. Mais visão do que está acontecendo.</h2>
+        </div>
+        <div class="flow">
+          <article class="flow-step">
+            <span class="step-code">01 / LANÇAR</span>
+            <h3>Abra os agentes que já trabalham com você.</h3>
+            <p>O BrainChain detecta Codex, Claude, Gemini e Kimi instalados localmente e os abre em sessões de terminal reais.</p>
+          </article>
+          <article class="flow-step">
+            <span class="step-code">02 / ORQUESTRAR</span>
+            <h3>Dê contexto e direcione a conversa certa.</h3>
+            <p>Organize o trabalho em painéis visíveis e envie instruções entre sessões com o protocolo de orquestração.</p>
+          </article>
+          <article class="flow-step">
+            <span class="step-code">03 / MANTER O COMANDO</span>
+            <h3>Acompanhe o conjunto sem sair do seu projeto.</h3>
+            <p>Workspaces, projetos, atalhos e preferências mantêm sua missão legível enquanto o trabalho avança em paralelo.</p>
+          </article>
+        </div>
+      </section>
 
-    <div class="bc-plans bc-stagger">
-      <div class="bc-plan" data-spotlight>
-        <span class="bc-plan__name">FREE</span>
-        <div class="bc-plan__price">R$ 0<small>/ pra sempre</small></div>
-        <span class="bc-plan__sub">Sem cartão · sem cobrança</span>
-        <ul class="bc-plan__features">
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span>1 workspace ativo</span></li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span>2 panes simultâneas</span></li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span>BYO API keys (Anthropic, OpenAI, Google)</span></li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span>Pane de terminal e navegador</span></li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span>Acesso à comunidade no Discord</span></li>
-        </ul>
-        <a href="download.html" class="bc-btn bc-btn--ghost bc-plan__btn">Começar grátis →</a>
-      </div>
+      <section class="protocol" aria-labelledby="protocol-title">
+        <div class="protocol-copy">
+          <p class="mission-line"><span></span> CONVERSAS QUE ENCONTRAM O DESTINO</p>
+          <h2 id="protocol-title">Uma mensagem. O agente certo. A próxima etapa em movimento.</h2>
+          <p>Use comandos para abrir, fechar, perguntar, enviar ou transmitir contexto entre sessões. Você continua na cabine de comando — sem transformar o trabalho em uma caixa-preta.</p>
+          <a class="text-link" href="#entrar">Conhecer o BrainChain <span aria-hidden="true">→</span></a>
+        </div>
+        <div class="command-window" aria-label="Exemplo de comando entre agentes">
+          <div class="window-head"><span></span><span></span><span></span><b>orquestração ativa</b></div>
+          <pre><code><em>ORQ_CMD</em>
+<span class="command">SEND A002</span> revise o fluxo de login
+<em>ORQ_ENDCMD</em>
 
-      <div class="bc-plan bc-plan--featured" data-spotlight>
-        <span class="bc-chip bc-plan__pop">MAIS POPULAR</span>
-        <span class="bc-plan__name">PRO</span>
-        <div class="bc-plan__price">Em breve<small>/mês</small></div>
-        <span class="bc-plan__sub">valor comercial será publicado antes do billing</span>
-        <ul class="bc-plan__features">
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span>Workspaces ilimitados</span></li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span>Até 8 panes simultâneas</span></li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span>OAuth gerenciado (token compartilhado opcional)</span></li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span>FlyKey full + Orchestration Map</span></li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span>Pane de editor + chamadas inter-agentes</span></li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span>Eco mode + telemetria de tokens</span></li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span>Recuperação de crash + update automático</span></li>
-        </ul>
-        <button class="bc-btn bc-btn--ghost bc-plan__btn" type="button" aria-disabled="true">Assinar Pro →</button>
-        <span class="bc-chip bc-chip--muted bc-plan__chip">EM BREVE · VALORES EM BREVE</span>
-      </div>
+<i>›</i> Rota entregue para <strong>A002 / Claude</strong>
+<i>›</i> Aguardando resposta na mesma missão</code></pre>
+        </div>
+      </section>
 
-      <div class="bc-plan" data-spotlight>
-        <span class="bc-plan__name">TEAM</span>
-        <div class="bc-plan__price">Sob consulta<small>/seat/mês</small></div>
-        <span class="bc-plan__sub">Mínimo 3 seats</span>
-        <ul class="bc-plan__features">
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span>Tudo do plano Pro</span></li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span>Billing centralizado</span></li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span>Workspaces compartilhados multi-seat</span></li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span>Audit log + role-based access</span></li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span>Suporte prioritário</span></li>
-        </ul>
-        <button class="bc-btn bc-btn--ghost bc-plan__btn" type="button" aria-disabled="true">Falar com vendas →</button>
-        <span class="bc-chip bc-chip--muted bc-plan__chip">EM BREVE</span>
-      </div>
-    </div>
+      <section id="planos" class="pricing" aria-labelledby="pricing-title">
+        <div class="pricing-intro">
+          <p class="mission-line"><span></span> PRÉVIA DE PLANOS</p>
+          <h2 id="pricing-title">Escolha o combustível da sua próxima missão.</h2>
+          <p>Estes valores são ilustrativos, para visualização do site. A oferta comercial do BrainChain ainda será definida.</p>
+          <div class="billing-switch" role="group" aria-label="Periodicidade ilustrativa"><button class="active" type="button" data-rate="monthly">Mensal</button><button type="button" data-rate="annual">Anual <span>–20%</span></button></div>
+        </div>
+        <div class="plans">
+          <article class="plan plan-orbit">
+            <p class="plan-name">Órbita</p><p class="plan-audience">Para experimentar sua primeira constelação.</p>
+            <p class="price"><strong data-month="R$ 0" data-year="R$ 0">R$ 0</strong><span>/mês</span></p>
+            <ul><li>1 workspace local</li><li>Painéis de agentes</li><li>Configuração pessoal</li></ul>
+            <a href="#entrar" class="button button-ghost">Ver acesso</a>
+          </article>
+          <article class="plan plan-nova">
+            <p class="recommended">MAIS PROCURADO</p><p class="plan-name">Nova</p><p class="plan-audience">Para projetos que ganham velocidade em paralelo.</p>
+            <p class="price"><strong data-month="R$ 39" data-year="R$ 31">R$ 39</strong><span>/mês</span></p>
+            <ul><li>Workspaces ilimitados</li><li>Layouts e preferências salvos</li><li>Histórico de execuções</li></ul>
+            <a href="#entrar" class="button button-primary">Entrar na órbita</a>
+          </article>
+          <article class="plan plan-galaxy">
+            <p class="plan-name">Galáxia</p><p class="plan-audience">Para equipes que querem coordenar uma frota.</p>
+            <p class="price"><strong data-month="R$ 99" data-year="R$ 79">R$ 99</strong><span>/mês</span></p>
+            <ul><li>Recursos de equipe</li><li>Espaços compartilhados</li><li>Suporte prioritário</li></ul>
+            <a href="#entrar" class="button button-ghost">Falar sobre equipe</a>
+          </article>
+        </div>
+      </section>
 
-    <div class="bc-plan-bottom bc-reveal">
-      <span><span class="check">✓</span> Windows hoje · macOS e Linux em breve</span>
-      <span><span class="check">✓</span> Update automático</span>
-      <span><span class="check">✓</span> 7 dias de garantia*</span>
-    </div>
-  </div>
-</section>
-
-<!-- 10.12 · Quem constrói -->
-<section class="bc-section" id="quem">
-  <div class="bc-container">
-    <div class="bc-section__head bc-reveal">
-      <span class="bc-eyebrow">QUEM CONSTRÓI</span>
-      <h2 class="bc-section__title">Construído por quem usa.
-Build in public.<span class="bc-asterisk">*</span></h2>
-    </div>
-
-    <div class="bc-builder bc-reveal">
-      <div class="bc-builder__mark">
-        <span></span><span></span><span></span><span class="plus"></span>
-      </div>
-      <div class="bc-builder__body">
-        <p><strong>BrainChain*</strong> é desenvolvido por uma equipe enxuta de engenheiros que enfrentaram o mesmo problema que o produto resolve: orquestrar múltiplos modelos de IA sem perder contexto, sem inflar custos, sem trocar de ferramenta a cada tarefa.</p>
-        <p>Para feedback ou reportar um problema: <span class="bc-mono" style="color:var(--bc-accent-light)">hello@brainchain.net</span>.<br/>Repositório público será aberto assim que o código estiver pronto para revisão externa.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- 10.13 · Manifesto -->
-<section class="bc-section bc-section--void" id="manifesto">
-  <div class="bc-container">
-    <div class="bc-section__head bc-reveal" style="max-width:840px">
-      <span class="bc-eyebrow">PRINCÍPIOS DE PRODUTO</span>
-      <h2 class="bc-section__title">Construído como a ferramenta
-que pretende ser.<span class="bc-asterisk">*</span></h2>
-    </div>
-
-    <div class="bc-manifesto bc-reveal" style="max-width:840px">
-      <div class="line"><span class="arrow">&gt;</span><span>BrainChain não é uma landing page com um produto atrás.</span></div>
-      <div class="line"><span class="arrow">&gt;</span><span>É uma IDE com um site na frente.</span></div>
-      <div class="line"><span class="arrow">&gt;</span><span>Densidade é uma feature. Cada pixel está aqui de propósito.</span></div>
-    </div>
-  </div>
-</section>
-
-<!-- 10.14 · CTA final -->
-<section class="bc-finalcta" id="cta">
-  <div class="bc-finalcta__inner bc-reveal">
-    <h2>Pronto para orquestrar?<span class="bc-asterisk">*</span></h2>
-    <p>Baixe agora. Conecte seus modelos. Execute em paralelo em menos de 2 minutos.</p>
-    <div class="bc-finalcta__ctas">
-      <a href="download.html" class="bc-btn bc-btn--lg bc-btn--white" data-magnetic>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-        Baixar para Windows
-      </a>
-      <a href="docs.html" class="bc-btn bc-btn--lg bc-btn--outline-white" data-magnetic>Ver documentação →</a>
-    </div>
-    <p class="bc-finalcta__note">Gratuito · sem cartão · sem cadastro para baixar</p>
-  </div>
-</section>
-
-<!-- Footer -->
-<footer class="bc-footer" role="contentinfo">
-  <div class="bc-container">
-    <div class="bc-footer__grid">
-      <div class="bc-footer__brand">
-        <a href="index.html" class="bc-brand">
-          <span class="bc-brand__mark" aria-hidden="true">
-            <span></span><span></span><span></span><span class="bc-brand__plus"></span>
-          </span>
-          <span class="bc-brand__name">BrainChain<span class="bc-brand__star">*</span></span>
-        </a>
-        <p class="bc-footer__tagline">
-          IDE multi-agente para times de IA.<br/>
-          <span data-bc-version="build">Build in public · 0.0.9 Alpha</span>
-        </p>
-        <form class="bc-footer__leadcap" data-lead-form aria-label="Receber novidades">
-          <input type="email" placeholder="seu@email.com" aria-label="email" required>
-          <button type="submit">Avisar</button>
+      <section id="entrar" class="access" aria-labelledby="access-title">
+        <div class="access-orbit" aria-hidden="true"><span></span><span></span><span></span></div>
+        <div class="access-copy"><p class="mission-line"><span></span> PONTO DE ENTRADA</p><h2 id="access-title">Pronto para assumir a cabine?</h2><p>O login será conectado ao BrainChain em breve. Por enquanto, esta área mostra como o acesso pode viver no produto.</p></div>
+        <form class="login-form" novalidate>
+          <label for="email">Seu e-mail</label>
+          <div class="input-row"><input id="email" type="email" autocomplete="email" placeholder="voce@exemplo.com" required /><button class="button button-primary" type="submit">Solicitar acesso <span aria-hidden="true">→</span></button></div>
+          <p class="form-status" aria-live="polite">Prévia visual — nenhum dado é enviado.</p>
         </form>
-        <div class="bc-lead-status" data-lead-status></div>
-        <div class="bc-footer__social">
-          <a href="mailto:hello@brainchain.net?subject=GitHub%20BrainChain" aria-label="GitHub (em breve)">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5A11.5 11.5 0 0 0 .5 12a11.5 11.5 0 0 0 7.86 10.92c.58.1.78-.25.78-.55v-2c-3.22.7-3.9-1.55-3.9-1.55-.53-1.35-1.3-1.7-1.3-1.7-1.05-.72.08-.7.08-.7 1.17.08 1.78 1.2 1.78 1.2 1.04 1.78 2.72 1.27 3.38.97.1-.75.4-1.27.74-1.56-2.56-.3-5.26-1.28-5.26-5.7 0-1.26.45-2.3 1.18-3.1-.12-.3-.52-1.47.11-3.06 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.78 0c2.21-1.5 3.18-1.18 3.18-1.18.63 1.59.23 2.76.11 3.06.74.8 1.18 1.84 1.18 3.1 0 4.43-2.71 5.4-5.28 5.7.42.36.78 1.06.78 2.14V22c0 .3.2.66.79.55A11.5 11.5 0 0 0 23.5 12 11.5 11.5 0 0 0 12 .5z"/></svg>
-          </a>
-          <a href="mailto:hello@brainchain.net" aria-label="Email">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-          </a>
-        </div>
-      </div>
+      </section>
+    </main>
 
-      <div class="bc-footer__col">
-        <h4>Produto</h4>
-        <ul>
-          <li><a href="product.html">Visão geral</a></li>
-          <li><a href="#solucao">Recursos</a></li>
-          <li><a href="agents.html">Agentes</a></li>
-          <li><a href="#precos">Preços</a></li>
-          <li><a href="download.html">Download</a></li>
-          <li><a href="changelog.html">Changelog</a></li>
-        </ul>
-      </div>
-      <div class="bc-footer__col">
-        <h4>Recursos</h4>
-        <ul>
-          <li><a href="docs.html">Documentação</a></li>
-          <li><a href="docs.html#guia">Guia rápido</a></li>
-          <li><a href="#benchmarks">Comparativo</a></li>
-          <li><a href="#faq">Perguntas frequentes</a></li>
-        </ul>
-      </div>
-      <div class="bc-footer__col">
-        <h4>Empresa</h4>
-        <ul>
-          <li><a href="about.html">Sobre</a></li>
-          <li><a href="mailto:hello@brainchain.net">Contato</a></li>
-        </ul>
-      </div>
-      <div class="bc-footer__col">
-        <h4>Legal</h4>
-        <ul>
-          <li><a href="legal/privacy.html">Privacidade</a></li>
-          <li><a href="legal/terms.html">Termos</a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-  <div class="bc-footer__copy" data-bc-version="footer">© 2026 BrainChain Orchestrator · 0.0.9 Alpha</div>
-</footer>
-
-<script src="js/version.js" defer></script>
-<script src="js/i18n.js" defer></script>
-<script src="js/interactions.js" defer></script>
-<script src="js/discord-sim.js" defer></script>
-<script src="js/cockpit.js" defer></script>
-<script src="js/projects-demo.js" defer></script>
-
-<!-- Rating template renderer for the comparison table -->
-<script>
-(function () {
-  function renderRating(filled, total, variant) {
-    let html = '<span class="rating ' + (variant || '') + '">';
-    for (let i = 0; i < total; i++) {
-      html += '<span class="dot' + (i < filled ? '' : ' off') + '"></span>';
-    }
-    html += '</span>';
-    return html;
-  }
-  // Walk text nodes inside the rate-table cells and replace tokens
-  document.querySelectorAll('.bc-rate-table tbody td').forEach(function (td) {
-    const txt = td.textContent.trim();
-    const m = txt.match(/^\{\{r(\d)(?:-(\w+))?\}\}$/);
-    if (m) {
-      const filled = parseInt(m[1], 10);
-      const variant = m[2] ? ('rating--' + m[2]) : '';
-      td.innerHTML = renderRating(filled, 5, variant);
-    }
-  });
-})();
-</script>
-</body>
+    <footer><img src="assets/brand/logo_branco.svg" alt="" /><span>BrainChain Orchestrator</span><p>Seu time de IA, em órbita.</p><a href="#topo">Voltar ao topo ↑</a></footer>
+    <script src="script.js"></script>
+  </body>
 </html>
