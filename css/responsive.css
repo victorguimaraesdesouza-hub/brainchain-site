@@ -1,0 +1,383 @@
+/* ============================================================
+   BrainChain · responsive.css
+   Comprehensive mobile / tablet sweep · loaded LAST so its rules
+   override anything earlier when matched.
+
+   Breakpoints (match tokens.css):
+     lg < 1024  · tablet portrait, laptop narrow
+     md < 768   · phone landscape, small tablet
+     sm < 480   · phone portrait
+============================================================ */
+
+
+/* ============================================================
+   1. NAVBAR · titlebar
+============================================================ */
+@media (max-width: 1024px) {
+  .bc-navbar__inner {
+    padding: 0 var(--bc-space-4);
+    gap: var(--bc-space-2);
+  }
+  .bc-nav-links { display: none; }
+  .bc-lang-toggle { display: none; }
+}
+@media (max-width: 768px) {
+  .bc-titlebar { padding: 0 var(--bc-space-2); }
+  .bc-titlebar__left { font-size: 9px; }
+  .bc-titlebar__controls { gap: 6px; }
+  .bc-navbar__inner { padding: 0 var(--bc-space-3); gap: var(--bc-space-1_5); }
+  .bc-brand__name { font-size: var(--bc-fs-13); }
+  /* Keep just brand + Baixar + menu. */
+}
+@media (max-width: 480px) {
+  .bc-navbar { height: 44px; }
+  .bc-navbar__inner { height: 44px; }
+}
+
+
+/* ============================================================
+   2. SECTION FRAME · containers
+============================================================ */
+@media (max-width: 1024px) {
+  .bc-section {
+    padding-top: var(--bc-space-10);
+    padding-bottom: var(--bc-space-10);
+  }
+  .bc-section__head { margin-bottom: var(--bc-space-7); }
+  .bc-section__title { font-size: clamp(24px, 4vw, 34px); }
+}
+@media (max-width: 768px) {
+  .bc-container {
+    padding-left: var(--bc-space-4);
+    padding-right: var(--bc-space-4);
+  }
+  .bc-section {
+    padding-top: var(--bc-space-9);
+    padding-bottom: var(--bc-space-9);
+  }
+  .bc-section__head { margin-bottom: var(--bc-space-6); }
+  .bc-section__title { font-size: clamp(22px, 6.5vw, 30px); }
+  .bc-section__sub { font-size: var(--bc-fs-13); }
+}
+
+
+/* ============================================================
+   3. HERO
+============================================================ */
+@media (max-width: 1024px) {
+  .bc-hero { min-height: 0; grid-template-columns: 1fr; }
+  .bc-hero__panel {
+    padding: var(--bc-space-10) var(--bc-space-6);
+    gap: var(--bc-space-5);
+  }
+  .bc-hero__h1 { font-size: clamp(28px, 5.5vw, 44px); }
+  .bc-hero__cockpit-wrap { padding: var(--bc-space-4); }
+}
+@media (max-width: 768px) {
+  .bc-hero__panel {
+    padding: var(--bc-space-8) var(--bc-space-4);
+    gap: var(--bc-space-4);
+  }
+  .bc-hero__brandlock .name { font-size: var(--bc-fs-15); }
+  .bc-hero__brandlock .sub { font-size: 9px; margin-left: var(--bc-space-1_5); padding-left: var(--bc-space-1_5); }
+  .bc-hero__h1 { font-size: clamp(26px, 7.5vw, 38px); }
+  .bc-hero__sub { font-size: var(--bc-fs-14); }
+  .bc-hero__tickers {
+    gap: var(--bc-space-2);
+    font-size: var(--bc-fs-10);
+    padding: var(--bc-space-2) 0;
+    justify-content: space-between;
+  }
+  .bc-hero__tickers .stat .num { font-size: var(--bc-fs-14); }
+  .bc-hero__tickers .sep { display: none; }
+  .bc-hero__ctas { gap: var(--bc-space-2); }
+  .bc-hero__ctas .bc-btn { font-size: var(--bc-fs-11); padding: 0 var(--bc-space-3); height: 44px; }
+  .bc-hero__shipping { font-size: 9px; }
+  .bc-hero__cockpit-wrap { padding: var(--bc-space-3); }
+}
+@media (max-width: 480px) {
+  .bc-hero__ctas { flex-direction: column; align-items: stretch; }
+  .bc-hero__ctas .bc-btn { width: 100%; }
+}
+
+
+/* ============================================================
+   4. COCKPITS (hero 2-col · big 2x2)
+============================================================ */
+@media (max-width: 1024px) {
+  .bc-cockpit__titlebar { height: 24px; padding: 0 var(--bc-space-2); font-size: 9px; }
+  .bc-cockpit__header { height: 40px; padding: 0 var(--bc-space-2); flex-wrap: wrap; gap: var(--bc-space-1); }
+  .bc-cockpit__header .seg { padding: 2px 5px; font-size: 9px; }
+  .bc-cockpit__statusbar {
+    height: auto;
+    min-height: 22px;
+    padding: var(--bc-space-1) var(--bc-space-2);
+    font-size: 9px;
+    flex-wrap: wrap;
+    gap: var(--bc-space-2);
+  }
+  .bc-cockpit__panes--2col { height: 380px; }
+  .bc-cockpit__panes--2x2 { height: 480px; }
+  .bc-pane__subhead { padding: 0 var(--bc-space-1_5); font-size: 9px; }
+  .bc-pane__header { padding: 0 var(--bc-space-1_5); }
+  .bc-pane__footer { padding: 2px var(--bc-space-1_5); font-size: 9px; }
+}
+@media (max-width: 768px) {
+  /* Hero cockpit: stack 2 panes vertically */
+  .bc-cockpit__panes--2col {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+    height: 480px;
+  }
+  /* Big cockpit: stays 2x2 but smaller; on very narrow it stacks */
+  .bc-cockpit__panes--2x2 {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    height: 500px;
+  }
+  /* Drop non-essentials inside narrow cockpit panes */
+  .bc-cockpit .bc-pane__header .right { display: none; }
+  .bc-cockpit .bc-pane__subhead { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .bc-cockpit .bc-pane__footer span:nth-child(2),
+  .bc-cockpit .bc-pane__footer span:nth-child(3) { display: none; }
+  /* Header overflow controls */
+  .bc-cockpit__header .seg:nth-child(n+6):not([data-add-pane]):not(.spacer) { display: none; }
+}
+@media (max-width: 480px) {
+  /* Big cockpit becomes 1-column 4-row */
+  .bc-cockpit__panes--2x2 {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(4, 1fr);
+    height: 600px;
+  }
+  .bc-cockpit__header { display: flex; align-items: center; }
+  .bc-cockpit__header .seg:nth-child(n+4):not([data-add-pane]):not(.spacer) { display: none; }
+  .bc-cockpit__statusbar .sep:nth-of-type(n+5) { display: none; }
+}
+
+
+/* ============================================================
+   5. EM 30 SEGUNDOS · resume cards
+============================================================ */
+@media (max-width: 1024px) {
+  .bc-resume-grid { grid-template-columns: repeat(2, 1fr); }
+  .bc-resume-card { min-height: 0; }
+}
+@media (max-width: 640px) {
+  .bc-resume-grid { grid-template-columns: 1fr; }
+}
+
+
+/* ============================================================
+   6. POR QUE AGORA · twocol
+============================================================ */
+@media (max-width: 1024px) {
+  .bc-twocol { grid-template-columns: 1fr; gap: var(--bc-space-6); }
+}
+
+
+/* ============================================================
+   7. SOLUTION · stats below cockpit
+============================================================ */
+@media (max-width: 1024px) {
+  .bc-solution .bc-container > div[style*="grid-template-columns:repeat(3,1fr)"] {
+    grid-template-columns: 1fr 1fr !important;
+    gap: var(--bc-space-3) !important;
+  }
+}
+@media (max-width: 640px) {
+  .bc-solution .bc-container > div[style*="grid-template-columns"] {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+
+/* ============================================================
+   8. SQUAD config · role cards
+============================================================ */
+@media (max-width: 1024px) {
+  .bc-squad { grid-template-columns: repeat(2, 1fr); }
+  .bc-role-card { min-height: 0; }
+}
+@media (max-width: 640px) {
+  .bc-squad { grid-template-columns: 1fr; }
+}
+
+
+/* ============================================================
+   9. BENCHMARK table · horizontal scroll on mobile
+============================================================ */
+@media (max-width: 1024px) {
+  .bc-bench-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .bc-rate-table { min-width: 760px; }
+  .bc-rate-table thead th,
+  .bc-rate-table tbody td { padding: var(--bc-space-2) var(--bc-space-3); }
+}
+@media (max-width: 768px) {
+  .bc-bench__head-bar { font-size: 9px; flex-wrap: wrap; }
+}
+
+
+/* ============================================================
+   10. DIZ SIM / DIZ NÃO
+============================================================ */
+@media (max-width: 768px) {
+  .bc-qualif { grid-template-columns: 1fr; gap: var(--bc-space-3); }
+  .bc-qualif__col { padding: var(--bc-space-4); }
+}
+
+
+/* ============================================================
+   11. FAQ
+============================================================ */
+@media (max-width: 768px) {
+  .bc-faq__q { padding: var(--bc-space-3) var(--bc-space-4); font-size: var(--bc-fs-12); gap: var(--bc-space-2); }
+  .bc-faq__inner { padding: 0 var(--bc-space-4) var(--bc-space-3) var(--bc-space-4); font-size: var(--bc-fs-12); }
+}
+
+
+/* ============================================================
+   12. AGENT TILES · 5x2 → 2 → 1
+============================================================ */
+@media (max-width: 1024px) {
+  .bc-agents-grid { grid-template-columns: repeat(2, 1fr) !important; }
+}
+@media (max-width: 480px) {
+  .bc-agents-grid { grid-template-columns: 1fr !important; }
+}
+
+
+/* ============================================================
+   13. MODELOS PRONTOS · split
+============================================================ */
+@media (max-width: 1024px) {
+  .bc-models-split { grid-template-columns: 1fr; gap: var(--bc-space-4); }
+  .bc-models-col { padding: var(--bc-space-5); }
+}
+@media (max-width: 768px) {
+  .bc-models-col__list li { grid-template-columns: 22px 1fr; }
+  .bc-models-col__list .vendor { display: none; }
+}
+
+
+/* ============================================================
+   14. FERRAMENTAS INTEGRADAS
+============================================================ */
+@media (max-width: 1024px) {
+  .bc-tools { grid-template-columns: 1fr; gap: var(--bc-space-3); }
+  .bc-tool-card { min-height: 0; }
+}
+
+
+/* ============================================================
+   15. MÚLTIPLOS PROJETOS · demo
+============================================================ */
+@media (max-width: 1024px) {
+  /* Already handled · 2x3 stays, 2col + 2x2 + single intact */
+  .bc-pd-titlebar { height: 22px; font-size: 9px; padding: 0 var(--bc-space-1_5); }
+  .bc-pd-tabs { height: 32px; padding: 0 var(--bc-space-1_5); }
+  .bc-pd-tab { font-size: 10px; padding: 0 var(--bc-space-2); gap: var(--bc-space-1); }
+  .bc-pd-tab .count { font-size: 8px; padding: 0 4px; }
+  .bc-pd-header { height: 28px; padding: 0 var(--bc-space-1_5); }
+  .bc-pd-header .seg { padding: 2px 5px; font-size: 9px; }
+  .bc-pd-status { padding: 0 var(--bc-space-1_5); font-size: 8px; }
+  .bc-projects__features {
+    margin-top: var(--bc-space-5);
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (max-width: 768px) {
+  .bc-pd-stage { grid-template-columns: 1fr !important; }
+  /* Project layouts on phone */
+  .bc-pd-grid { height: 360px; gap: 4px; padding: 4px; }
+  .bc-pd-grid[data-layout="2x3"]    { grid-template-columns: 1fr 1fr; grid-template-rows: repeat(3, 1fr); }
+  .bc-pd-grid[data-layout="2col"]   { grid-template-columns: 1fr; grid-template-rows: 1fr 1fr; }
+  .bc-pd-grid[data-layout="2x2"]    { grid-template-columns: 1fr; grid-template-rows: repeat(4, 1fr); height: 480px; }
+  .bc-pd-grid[data-layout="single"] { height: 280px; }
+  .bc-pd-tabs { overflow-x: auto; }
+  .bc-pd-tab { flex-shrink: 0; }
+  .bc-pd-header { overflow-x: auto; flex-wrap: nowrap; }
+  .bc-pd-header .seg:not([data-add-pane-btn]) { flex-shrink: 0; }
+  .bc-pd-fauxcursor { display: none; }
+  .bc-projects__features { grid-template-columns: 1fr; gap: var(--bc-space-3); margin-top: var(--bc-space-4); }
+  .bc-projects__feature { padding: var(--bc-space-2_5); font-size: var(--bc-fs-12); }
+}
+@media (max-width: 480px) {
+  /* On tight phones, single-column projects-grid for every layout */
+  .bc-pd-grid[data-layout="2x3"] { grid-template-columns: 1fr; grid-template-rows: repeat(6, 1fr); height: 520px; }
+  /* And keep typewriter calm */
+}
+
+
+/* ============================================================
+   16. PREÇOS · plans
+============================================================ */
+@media (max-width: 1024px) {
+  .bc-plans { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; }
+  .bc-plan { padding: var(--bc-space-5); }
+}
+
+
+/* ============================================================
+   17. BUILDER · manifesto · final CTA
+============================================================ */
+@media (max-width: 768px) {
+  .bc-builder { grid-template-columns: 1fr; gap: var(--bc-space-3); }
+  .bc-builder__mark { width: 56px; height: 56px; padding: 10px; }
+  .bc-manifesto { padding: var(--bc-space-4); font-size: var(--bc-fs-13); line-height: 1.6; }
+  .bc-finalcta { padding: var(--bc-space-12) var(--bc-space-4); }
+  .bc-finalcta h2 { font-size: clamp(28px, 7vw, 40px); }
+  .bc-finalcta__ctas { flex-direction: column; align-items: stretch; }
+  .bc-finalcta__ctas .bc-btn { width: 100%; }
+  .bc-plan-bottom { font-size: 9px; gap: var(--bc-space-3); }
+}
+
+
+/* ============================================================
+   18. FOOTER
+============================================================ */
+@media (max-width: 1024px) {
+  .bc-footer__grid { grid-template-columns: 1.4fr 1fr 1fr; gap: var(--bc-space-5); }
+  .bc-footer__brand { grid-column: 1 / -1; }
+}
+@media (max-width: 768px) {
+  .bc-footer { padding-top: var(--bc-space-8); }
+  .bc-footer__grid { grid-template-columns: 1fr 1fr; gap: var(--bc-space-5); }
+  .bc-footer__brand { grid-column: 1 / -1; }
+  .bc-footer__leadcap { max-width: 320px; }
+  .bc-footer__copy { padding: var(--bc-space-3) var(--bc-space-4); font-size: 9px; text-align: center; }
+}
+@media (max-width: 480px) {
+  .bc-footer__grid { grid-template-columns: 1fr; }
+}
+
+
+/* ============================================================
+   19. INTERACTION CONSTRAINTS
+   (already partially handled in interactions.css — reinforced here)
+============================================================ */
+@media (max-width: 1024px) {
+  /* Custom cursor / magnetic / tilt off below lg (perf + UX) */
+  .bc-cursor, .bc-cursor__ripple { display: none !important; }
+  [data-magnetic] { transform: none !important; }
+  [data-tilt] { transform: none !important; }
+}
+
+
+/* ============================================================
+   20. TYPOGRAPHY · final clamps
+============================================================ */
+@media (max-width: 480px) {
+  h1, .bc-hero__h1 { letter-spacing: -0.015em; }
+  .bc-section__title { letter-spacing: -0.018em; }
+  .bc-mono, .bc-mono-sm { font-size: 9px !important; }
+  .bc-eyebrow { font-size: 9px; }
+}
+
+
+/* ============================================================
+   21. UTILITY · prevent overflow on long mono strings
+============================================================ */
+@media (max-width: 480px) {
+  body { overflow-x: hidden; }
+}

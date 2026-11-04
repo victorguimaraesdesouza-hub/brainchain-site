@@ -1,0 +1,171 @@
+/* ============================================================
+   BrainChain Orchestrator — Design Tokens
+   v1.0.0 · Generated from tokens.json
+   Use as :root vars (recommended) or import directly.
+============================================================ */
+
+:root {
+  /* ---------- COLOR · BACKGROUND ---------- */
+  --bc-bg-primary:    #1a1a1a;
+  --bc-bg-secondary:  #242424;
+  --bc-bg-tertiary:   #2d2d2d;
+  --bc-bg-elevated:   #353535;
+  --bc-bg-void:       #0a0a0a;
+
+  /* ---------- COLOR · TEXT ---------- */
+  --bc-text-primary:   #ffffff;
+  --bc-text-secondary: #b0b0b0;
+  --bc-text-tertiary:  #808080;
+  --bc-text-muted:     #606060;
+
+  /* ---------- COLOR · ACCENT ---------- */
+  --bc-accent:         #7c3aed;
+  --bc-accent-light:   #a78bfa;
+  --bc-accent-dark:    #6d28d9;
+
+  /* ---------- COLOR · STATUS ---------- */
+  --bc-success: #10b981;
+  --bc-warning: #f59e0b;
+  --bc-error:   #ef4444;
+  --bc-info:    #3b82f6;
+
+  /* ---------- COLOR · BORDER ---------- */
+  --bc-border:        #3d3d3d;
+  --bc-border-soft:   #2a2a2a;
+  --bc-border-accent: #7c3aed;
+
+  /* ---------- COLOR · AGENTS ---------- */
+  --bc-agent-claude:   #c2410c;
+  --bc-agent-codex:    #0d9488;
+  --bc-agent-gemini:   #3b82f6;
+  --bc-agent-mistral:  #eab308;
+  --bc-agent-llama:    #a78bfa;
+  --bc-agent-deepseek: #06b6d4;
+  --bc-agent-qwen:     #dc2626;
+  --bc-agent-cohere:   #0ea5e9;
+
+  /* ---------- COLOR · PANE KIND ---------- */
+  --bc-pane-terminal: #10b981;
+  --bc-pane-browser:  #3b82f6;
+  --bc-pane-editor:   #a78bfa;
+
+  /* ---------- TYPOGRAPHY ---------- */
+  --bc-font-sans: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --bc-font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --bc-fs-9:  9px;
+  --bc-fs-10: 10px;
+  --bc-fs-11: 11px;
+  --bc-fs-12: 12px;
+  --bc-fs-13: 13px;
+  --bc-fs-14: 14px;
+  --bc-fs-15: 15px;
+  --bc-fs-16: 16px;
+  --bc-fs-18: 18px;
+  --bc-fs-20: 20px;
+  --bc-fs-24: 24px;
+  --bc-fs-26: 26px;
+  --bc-fs-28: 28px;
+  --bc-fs-40: 40px;
+  --bc-fs-44: 44px;
+
+  --bc-fw-regular:  400;
+  --bc-fw-medium:   500;
+  --bc-fw-semibold: 600;
+  --bc-fw-bold:     700;
+
+  --bc-lh-tight:   1.05;
+  --bc-lh-snug:    1.25;
+  --bc-lh-normal:  1.5;
+  --bc-lh-relaxed: 1.65;
+  --bc-lh-loose:   1.8;
+
+  --bc-ls-tight:  -0.02em;
+  --bc-ls-normal: 0;
+  --bc-ls-wide:   0.04em;
+  --bc-ls-wider:  0.14em;
+  --bc-ls-widest: 0.18em;
+
+  /* ---------- SPACING (4px scale) ---------- */
+  --bc-space-0:    0px;
+  --bc-space-0_5:  2px;
+  --bc-space-1:    4px;
+  --bc-space-1_5:  6px;
+  --bc-space-2:    8px;
+  --bc-space-2_5: 10px;
+  --bc-space-3:   12px;
+  --bc-space-3_5: 14px;
+  --bc-space-4:   16px;
+  --bc-space-5:   20px;
+  --bc-space-6:   24px;
+  --bc-space-7:   28px;
+  --bc-space-8:   32px;
+  --bc-space-9:   36px;
+  --bc-space-10:  40px;
+  --bc-space-12:  48px;
+  --bc-space-14:  56px;
+  --bc-space-16:  64px;
+  --bc-space-20:  80px;
+
+  /* ---------- RADIUS ---------- */
+  --bc-radius-none: 0;
+  --bc-radius-sm:   4px;
+  --bc-radius-md:   6px;
+  --bc-radius-lg:   8px;
+  --bc-radius-xl:  12px;
+  --bc-radius-2xl: 16px;
+  --bc-radius-full: 9999px;
+
+  /* ---------- SHADOW ---------- */
+  --bc-shadow-sm:  0 1px 2px rgba(0, 0, 0, 0.05);
+  --bc-shadow-md:  0 4px 6px rgba(0, 0, 0, 0.25);
+  --bc-shadow-lg:  0 10px 15px rgba(0, 0, 0, 0.35);
+  --bc-shadow-xl:  0 20px 25px rgba(0, 0, 0, 0.45);
+  --bc-shadow-accent-glow:   0 6px 18px rgba(124, 58, 237, 0.45);
+  --bc-shadow-primary-press: 0 10px 24px rgba(124, 58, 237, 0.45);
+  --bc-shadow-focus-ring:    0 0 0 3px rgba(124, 58, 237, 0.18);
+
+  /* ---------- DURATION / EASING ---------- */
+  --bc-dur-instant: 0ms;
+  --bc-dur-fast:    120ms;
+  --bc-dur-normal:  150ms;
+  --bc-dur-slow:    200ms;
+  --bc-dur-slower:  300ms;
+  --bc-ease-out:    cubic-bezier(0, 0, 0.2, 1);
+  --bc-ease-in:     cubic-bezier(0.4, 0, 1, 1);
+  --bc-ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* ---------- Z-INDEX ---------- */
+  --bc-z-base:                  0;
+  --bc-z-raised:                1;
+  --bc-z-dropdown:             30;
+  --bc-z-drag-overlay:         40;
+  --bc-z-modal:                50;
+  --bc-z-modal-content:        51;
+  --bc-z-picker-fab:           60;
+  --bc-z-floating-window-base: 100;
+  --bc-z-tooltip:             200;
+
+  /* ---------- ELEMENT DIMENSIONS ---------- */
+  --bc-h-header:        56px;
+  --bc-h-topbar-window: 28px;
+  --bc-h-topbar-tab:    44px;
+  --bc-h-topbar-prompt: 44px;
+  --bc-h-statusbar:     24px;
+  --bc-h-wizard-footer: 64px;
+  --bc-w-sidebar:      240px;
+  --bc-w-settings:     680px;
+  --bc-w-wizard-max:   760px;
+  --bc-w-container:   1280px;
+  --bc-pane-min-w:    240px;
+  --bc-pane-min-h:    160px;
+}
+
+/* ---------- BREAKPOINTS (use as media queries) ---------- */
+/*
+@media (min-width: 640px)  { ... }     · sm  · phone landscape
+@media (min-width: 768px)  { ... }     · md  · tablet
+@media (min-width: 1024px) { ... }     · lg  · laptop                  (login hero appears)
+@media (min-width: 1280px) { ... }     · xl  · desktop                 (container max width)
+@media (min-width: 1536px) { ... }     · 2xl · large desktop
+*/
