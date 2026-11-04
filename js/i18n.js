@@ -844,8 +844,14 @@
     document.querySelectorAll('[data-lang]').forEach((btn) => {
       btn.setAttribute('aria-current', btn.dataset.lang === lang ? 'true' : 'false');
     });
-    localStorage.setItem(KEY, lang);
+    try { localStorage.setItem(KEY, lang); } catch (e) { /* sem storage: o idioma vale só nesta página */ }
     window.BCI18N_LANG = lang;
+    // Avisa quem renderiza textos por JS (cockpits e demos) para acompanhar o idioma.
+    document.dispatchEvent(new CustomEvent('bc:langchange', { detail: { lang } }));
+  }
+
+  function storedLang() {
+    try { return localStorage.getItem(KEY); } catch (e) { return null; }
   }
 
   function ensureSwitcher() {
@@ -878,16 +884,19 @@
     });
   }
 
+  const LANGS = ['pt', 'en', 'es'];
+  const valid = (lang) => (LANGS.includes(lang) ? lang : null);
+
   function init() {
     ensureSwitcher();
     TITLE_SOURCE = document.title;
-    const requested = new URLSearchParams(window.location.search).get('lang');
-    translate(requested || localStorage.getItem(KEY) || 'pt');
     window.BCI18N = {
-      get lang() { return localStorage.getItem(KEY) || 'pt'; },
+      get lang() { return window.BCI18N_LANG || valid(storedLang()) || 'pt'; },
       t(value) { return translateValue(value, this.lang); },
       translate
     };
+    const requested = valid(new URLSearchParams(window.location.search).get('lang'));
+    translate(requested || valid(storedLang()) || 'pt');
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
