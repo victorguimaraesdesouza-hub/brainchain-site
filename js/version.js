@@ -2,7 +2,7 @@
   'use strict';
 
   const VERSION = {
-    version: '0.0.9',
+    version: '0.3.15',
     channel: 'Alpha',
   };
   const scriptUrl = document.currentScript ? document.currentScript.src : '';

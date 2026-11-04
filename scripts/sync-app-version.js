@@ -5,7 +5,16 @@ const fs = require('fs');
 const path = require('path');
 
 const SITE_ROOT = path.resolve(__dirname, '..');
-const DEFAULT_APP_PACKAGE = path.resolve(__dirname, '..', '..', '..', 'BrainChain', 'app', 'package.json');
+// O app atual (Tauri) vive no repositório BrainChain-DEV, com o package.json na raiz.
+// Procura primeiro uma pasta irmã do site; o caminho do app Electron antigo fica por último.
+const APP_PACKAGE_CANDIDATES = [
+  path.resolve(SITE_ROOT, '..', 'BrainChain-DEV', 'package.json'),
+  path.resolve(SITE_ROOT, '..', 'brainchain-dev', 'package.json'),
+  path.resolve(SITE_ROOT, '..', '..', 'BrainChain-DEV', 'package.json'),
+  path.resolve(__dirname, '..', '..', '..', 'BrainChain', 'app', 'package.json'),
+];
+const DEFAULT_APP_PACKAGE =
+  APP_PACKAGE_CANDIDATES.find((candidate) => fs.existsSync(candidate)) || APP_PACKAGE_CANDIDATES[0];
 const APP_PACKAGE = process.env.BRAINCHAIN_APP_PACKAGE
   ? path.resolve(process.env.BRAINCHAIN_APP_PACKAGE)
   : DEFAULT_APP_PACKAGE;

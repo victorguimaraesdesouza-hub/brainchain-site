@@ -1,6 +1,6 @@
 {
   "name": "brainchain-site",
-  "version": "0.0.9",
+  "version": "0.3.15",
   "private": true,
   "scripts": {
     "sync:app-version": "node scripts/sync-app-version.js"
