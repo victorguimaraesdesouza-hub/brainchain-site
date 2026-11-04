@@ -24,7 +24,7 @@
       case 'titlebar':
         return 'BrainChain Orchestrator • ' + display;
       case 'hero':
-        return 'BRAINCHAIN* · ' + display;
+        return 'IDE multiagente · v' + VERSION.version;
       case 'build':
         return 'Build in public · ' + display;
       case 'footer':

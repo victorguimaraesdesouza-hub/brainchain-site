@@ -5,23 +5,25 @@
 ============================================================ */
 
 :root {
-  /* ---------- COLOR · BACKGROUND ---------- */
-  --bc-bg-primary:    #1a1a1a;
-  --bc-bg-secondary:  #242424;
-  --bc-bg-tertiary:   #2d2d2d;
-  --bc-bg-elevated:   #353535;
-  --bc-bg-void:       #0a0a0a;
+  /* ---------- COLOR · BACKGROUND ----------
+     Paleta "Definitivo Escuro" da Aparência v2 do app (src/styles/appearance-v2.css):
+     preto + roxo só como destaque. */
+  --bc-bg-primary:    #050505;
+  --bc-bg-secondary:  #0b0b0b;
+  --bc-bg-tertiary:   #151515;
+  --bc-bg-elevated:   #1c1c1c;
+  --bc-bg-void:       #020202;
 
   /* ---------- COLOR · TEXT ---------- */
-  --bc-text-primary:   #ffffff;
-  --bc-text-secondary: #b0b0b0;
-  --bc-text-tertiary:  #808080;
-  --bc-text-muted:     #606060;
+  --bc-text-primary:   #f4f4f4;
+  --bc-text-secondary: #a6a6a6;
+  --bc-text-tertiary:  #787878;
+  --bc-text-muted:     #5c5c5c;
 
   /* ---------- COLOR · ACCENT ---------- */
   --bc-accent:         #7c3aed;
   --bc-accent-light:   #a78bfa;
-  --bc-accent-dark:    #6d28d9;
+  --bc-accent-dark:    #5b21b6;
 
   /* ---------- COLOR · STATUS ---------- */
   --bc-success: #10b981;
@@ -30,8 +32,8 @@
   --bc-info:    #3b82f6;
 
   /* ---------- COLOR · BORDER ---------- */
-  --bc-border:        #3d3d3d;
-  --bc-border-soft:   #2a2a2a;
+  --bc-border:        #2b2b2b;
+  --bc-border-soft:   #1d1d1d;
   --bc-border-accent: #7c3aed;
 
   /* ---------- COLOR · AGENTS ---------- */

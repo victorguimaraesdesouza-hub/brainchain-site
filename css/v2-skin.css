@@ -1,0 +1,176 @@
+/* ============================================================
+   BrainChain · v2-skin.css
+   Camada da Aparência v2 do app ("Definitivo Escuro": preto + roxo
+   só como destaque, Sora/Fira Code, cantos leves, botões suaves,
+   palco de estrelas do login). Carregada por ÚLTIMO em todas as
+   páginas: sobrepõe o visual antigo (degradês roxos, cinzas, botões
+   mono em caixa alta) sem mexer na estrutura.
+   Referência: brainchain-dev/src/styles/appearance-v2.css
+============================================================ */
+
+:root {
+  --bc-v2-wash: 15%;
+  --bc-v2-ac-fg: #a78bfa;
+  --bc-v2-cosmos: 170, 178, 200;              /* estrelas (#aab2c8) */
+  --bc-shadow-accent-glow: none;
+  /* Palco de estrelas: três camadas em ladrilhos de tamanhos primos para não repetir à vista */
+  --bc-v2-stars:
+    radial-gradient(1px 1px at 23px 41px, rgba(var(--bc-v2-cosmos), .85), transparent 70%),
+    radial-gradient(1px 1px at 157px 113px, rgba(var(--bc-v2-cosmos), .55), transparent 70%),
+    radial-gradient(1.5px 1.5px at 211px 19px, rgba(var(--bc-v2-cosmos), .7), transparent 70%),
+    radial-gradient(1px 1px at 89px 187px, rgba(var(--bc-v2-cosmos), .45), transparent 70%),
+    radial-gradient(1px 1px at 61px 263px, rgba(var(--bc-v2-cosmos), .6), transparent 70%),
+    radial-gradient(1px 1px at 293px 229px, rgba(var(--bc-v2-cosmos), .4), transparent 70%),
+    radial-gradient(1.5px 1.5px at 331px 97px, rgba(var(--bc-v2-cosmos), .5), transparent 70%);
+}
+
+body { background: var(--bc-bg-primary); }
+
+/* ---------- Botões: Sora em caixa normal, principal "suave" ---------- */
+.bc-btn {
+  font-family: var(--bc-font-sans);
+  text-transform: none;
+  letter-spacing: 0;
+  font-weight: var(--bc-fw-semibold);
+}
+.bc-btn--primary,
+.bc-btn--white {
+  background: color-mix(in srgb, var(--bc-accent) var(--bc-v2-wash), transparent);
+  color: color-mix(in srgb, var(--bc-v2-ac-fg) 80%, var(--bc-text-primary));
+  border: 1px solid color-mix(in srgb, var(--bc-accent) 45%, transparent);
+  box-shadow: none;
+}
+.bc-btn--primary:hover,
+.bc-btn--white:hover {
+  background: color-mix(in srgb, var(--bc-accent) calc(var(--bc-v2-wash) + 8%), transparent);
+  color: color-mix(in srgb, var(--bc-v2-ac-fg) 80%, var(--bc-text-primary));
+}
+.bc-btn--primary:active,
+.bc-btn--white:active { box-shadow: none; transform: translateY(1px); }
+.bc-btn--ghost,
+.bc-btn--outline-white {
+  background: transparent;
+  color: var(--bc-text-primary);
+  border: 1px solid var(--bc-border);
+}
+.bc-btn--ghost:hover,
+.bc-btn--outline-white:hover {
+  background: var(--bc-bg-tertiary);
+  border-color: color-mix(in srgb, var(--bc-accent) 45%, var(--bc-border));
+}
+.bc-btn:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--bc-accent) 70%, white);
+  outline-offset: 2px;
+}
+
+/* ---------- Hero da home = tela de login do app ---------- */
+.bc-hero { background: var(--bc-bg-primary); }
+.bc-hero__panel {
+  background-color: #000;
+  background-image: var(--bc-v2-stars);
+  background-size: 360px 300px, 360px 300px, 360px 300px, 360px 300px, 360px 300px, 360px 300px, 360px 300px;
+}
+.bc-hero__panel::after {
+  background: radial-gradient(60% 40% at 18% 0%, rgba(124, 58, 237, .10), transparent 70%);
+}
+.bc-hero__eyebrow {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border: 1px solid var(--bc-border);
+  border-radius: var(--bc-radius-sm);
+  background: rgba(255, 255, 255, .03);
+  color: var(--bc-text-primary);
+  font-weight: var(--bc-fw-semibold);
+  letter-spacing: .1em;
+}
+.bc-hero__eyebrow::before {
+  content: "";
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: #22c55e;
+  box-shadow: 0 0 0 4px rgba(34, 197, 94, .18);
+  opacity: 1;
+}
+.bc-hero__eyebrow::after { content: none; }
+.bc-hero__h1 { font-weight: var(--bc-fw-bold); letter-spacing: -0.02em; }
+.bc-hero__h1 .ast { color: var(--bc-accent-light); }
+.bc-hero__sub { color: var(--bc-text-secondary); }
+.bc-hero__tickers {
+  color: var(--bc-text-secondary);
+  border-top-color: var(--bc-border-soft);
+  border-bottom-color: var(--bc-border-soft);
+}
+.bc-hero__tickers .stat .num { color: var(--bc-text-primary); }
+
+/* ---------- CTA final e topos de página: preto com estrelas, sem degradê roxo ---------- */
+.bc-finalcta {
+  background-color: #000;
+  background-image: var(--bc-v2-stars);
+  background-size: 360px 300px, 360px 300px, 360px 300px, 360px 300px, 360px 300px, 360px 300px, 360px 300px;
+  border-top: 1px solid var(--bc-border-soft);
+}
+.bc-finalcta p { color: var(--bc-text-secondary); }
+.bc-page-hero,
+.bc-login-page {
+  background-color: var(--bc-bg-primary);
+  background-image:
+    radial-gradient(50% 60% at 15% 0%, rgba(124, 58, 237, .08), transparent 70%),
+    var(--bc-v2-stars);
+  background-size: auto, 360px 300px, 360px 300px, 360px 300px, 360px 300px, 360px 300px, 360px 300px, 360px 300px;
+}
+
+/* ---------- Marca do "Quem constrói": quadrado do destaque, sem degradê ---------- */
+.bc-builder__mark { background: var(--bc-accent); }
+
+/* ---------- Sem o asterisco decorativo: o wordmark do app é "BrainChain / ORCHESTRATOR" ---------- */
+.bc-brand__star,
+.ast { display: none !important; }
+
+/* ---------- Linhas finas neutras (o roxo fica só no destaque) ---------- */
+.bc-models-col,
+.bc-bench-wrap,
+.bc-faq,
+.bc-plan { border-color: var(--bc-border-soft) !important; }
+.bc-plan--featured { border-color: color-mix(in srgb, var(--bc-accent) 45%, transparent) !important; }
+.bc-section--community { border-color: var(--bc-border-soft); }
+.bc-btn--ghost { border-color: var(--bc-border); }
+
+/* ---------- Menu e rótulos como no app ---------- */
+.bc-nav-links {
+  font-family: var(--bc-font-sans);
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: var(--bc-fs-13);
+}
+.bc-eyebrow::before,
+.bc-eyebrow::after { content: none; }
+.bc-asterisk { display: none !important; }
+
+/* ---------- Números do hero como os do login: 3 colunas, número em cima ---------- */
+.bc-hero__tickers {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--bc-space-4);
+  text-transform: none;
+  letter-spacing: 0;
+  font-family: var(--bc-font-sans);
+  font-size: var(--bc-fs-12);
+  border: 0;
+  padding: 0;
+}
+.bc-hero__tickers .sep { display: none; }
+.bc-hero__tickers .stat {
+  display: grid;
+  grid-template-rows: auto auto;
+  gap: 2px;
+  align-items: start;
+  line-height: 1.4;
+}
+.bc-hero__tickers .stat .num {
+  font-family: var(--bc-font-sans);
+  font-size: 24px;
+  line-height: 32px;
+}

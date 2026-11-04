@@ -82,6 +82,7 @@ function updateFallbackLabels(version) {
   const replacements = [
     [/BrainChain Orchestrator • v?\d+\.\d+\.\d+(?:\s+Alpha)?/g, `BrainChain Orchestrator • ${display}`],
     [/BRAINCHAIN\* · v?\d+\.\d+\.\d+(?: · ALPHA|\s+Alpha)?/g, `BRAINCHAIN* · ${display}`],
+    [/IDE multiagente · v\d+\.\d+\.\d+/g, `IDE multiagente · v${version}`],
     [/Build in public · v?\d+\.\d+\.\d+(?:\s+Alpha)?/g, `Build in public · ${display}`],
     [/© 2026 BrainChain Orchestrator · v?\d+\.\d+\.\d+(?:\s+Alpha)?/g, `© 2026 BrainChain Orchestrator · ${display}`],
     [/BrainChain Orchestrator · v?\d+\.\d+\.\d+(?:\s+Alpha)?/g, `BrainChain Orchestrator · ${display}`],
