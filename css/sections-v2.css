@@ -305,7 +305,7 @@
   display: grid;
   grid-template-columns: 58px minmax(120px, 168px) minmax(0, 1fr);
   border: 1px solid rgba(88,101,242,0.42);
-  border-radius: 8px;
+  border-radius: var(--bc-radius-lg);
   overflow: hidden;
   background: #313338;
   box-shadow: 0 24px 70px rgba(0,0,0,0.38), 0 0 0 1px rgba(167,139,250,0.08);
@@ -325,7 +325,7 @@
   height: 38px;
   display: grid;
   place-items: center;
-  border-radius: 14px;
+  border-radius: var(--bc-radius-xl);
   background: #313338;
   color: #dbdee1;
   font-family: var(--bc-font-mono);
@@ -334,7 +334,7 @@
 }
 
 .bc-discord-sim__servers .server.is-home {
-  border-radius: 12px;
+  border-radius: var(--bc-radius-xl);
   background: #5865f2;
   color: white;
   box-shadow: 0 0 0 3px rgba(88,101,242,0.18);
@@ -359,7 +359,7 @@
   display: block;
   margin-bottom: 3px;
   padding: 7px 9px;
-  border-radius: 5px;
+  border-radius: var(--bc-radius-lg);
   color: #949ba4;
   font-size: 12px;
   line-height: 1;
@@ -428,7 +428,7 @@
   align-items: start;
   padding: 8px;
   border: 1px solid transparent;
-  border-radius: 6px;
+  border-radius: var(--bc-radius-md);
   background: transparent;
   animation: bc-discord-message-in 420ms var(--bc-ease-out) both;
 }
@@ -537,7 +537,7 @@
   gap: var(--bc-space-3);
   margin: 0 16px 16px;
   padding: 12px 14px;
-  border-radius: 8px;
+  border-radius: var(--bc-radius-lg);
   background: #383a40;
   font-size: 12px;
   color: #949ba4;

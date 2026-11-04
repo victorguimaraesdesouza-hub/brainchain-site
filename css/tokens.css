@@ -110,10 +110,10 @@
   /* ---------- RADIUS ---------- */
   --bc-radius-none: 0;
   --bc-radius-sm:   4px;
-  --bc-radius-md:   6px;
-  --bc-radius-lg:   8px;
-  --bc-radius-xl:  12px;
-  --bc-radius-2xl: 16px;
+  --bc-radius-md:   4px;
+  --bc-radius-lg:   5px;
+  --bc-radius-xl:  5px;
+  --bc-radius-2xl: 6px;
   --bc-radius-full: 9999px;
 
   /* ---------- SHADOW ---------- */

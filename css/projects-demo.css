@@ -316,7 +316,7 @@
   border: 1px solid var(--bc-tabcolor, var(--bc-border));
   background: color-mix(in srgb, var(--bc-tabcolor, var(--bc-accent)) 8%, transparent);
   color: var(--bc-tabcolor, var(--bc-accent-light));
-  border-radius: var(--bc-radius-full);
+  border-radius: var(--bc-radius-sm);
   font-size: var(--bc-fs-10);
 }
 .bc-pd-caption .pill .d { width: 6px; height: 6px; border-radius: 50%; background: var(--bc-tabcolor, var(--bc-accent)); }
@@ -327,7 +327,7 @@
   top: -12px; right: var(--bc-space-3);
   background: var(--bc-bg-elevated);
   border: 1px solid var(--bc-border-soft);
-  border-radius: var(--bc-radius-full);
+  border-radius: var(--bc-radius-sm);
   padding: 4px 10px;
   font-family: var(--bc-font-mono);
   font-size: var(--bc-fs-9);

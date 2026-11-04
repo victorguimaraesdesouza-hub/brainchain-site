@@ -46,7 +46,7 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 *::-webkit-scrollbar-track { background: transparent; }
 *::-webkit-scrollbar-thumb {
   background: var(--bc-bg-elevated);
-  border-radius: var(--bc-radius-full);
+  border-radius: var(--bc-radius-sm);
   border: 2px solid var(--bc-bg-primary);
 }
 *::-webkit-scrollbar-thumb:hover { background: var(--bc-border); }
