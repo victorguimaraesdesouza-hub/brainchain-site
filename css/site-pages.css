@@ -543,3 +543,16 @@ html[data-mobile-menu="open"] .bc-mobile-menu {
   .bc-page-hero p { font-size: var(--bc-fs-14); }
   .bc-page-card { padding: var(--bc-space-4); }
 }
+
+/* Celulares estreitos (≤400px): a Sora é mais larga que a Inter, então o seletor
+   de idioma fica compacto para caber ao lado de "Baixar" e do menu. */
+@media (max-width: 400px) {
+  .bc-navbar .bc-lang-toggle { gap: 0; padding: 0 2px; }
+  .bc-navbar .bc-lang-toggle__sep { display: none; }
+  .bc-navbar .bc-lang-toggle__opt { min-width: 22px; padding: 0 4px; }
+}
+@media (max-width: 340px) {
+  .bc-navbar__right { gap: 4px; }
+  .bc-navbar .bc-btn--sm { padding-left: 8px; padding-right: 8px; }
+  .bc-navbar .bc-btn--sm svg { display: none; }
+}

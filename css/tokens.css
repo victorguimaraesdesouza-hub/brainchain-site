@@ -50,8 +50,8 @@
   --bc-pane-editor:   #a78bfa;
 
   /* ---------- TYPOGRAPHY ---------- */
-  --bc-font-sans: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  --bc-font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --bc-font-sans: Sora, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --bc-font-mono: "Fira Code", ui-monospace, "Cascadia Code", Consolas, monospace;
 
   --bc-fs-9:  9px;
   --bc-fs-10: 10px;

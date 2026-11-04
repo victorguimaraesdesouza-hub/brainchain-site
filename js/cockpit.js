@@ -197,7 +197,7 @@
                 <div style="color:#6b7280">2x2 · cols · single</div>
               </div>
             </div>
-            <div class="row" style="margin-top:8px;font-family:'JetBrains Mono',monospace;color:#6b7280">
+            <div class="row" style="margin-top:8px;font-family:var(--bc-font-mono);color:#6b7280">
               › refactor applied · 24 lines changed
             </div>
           </div>
